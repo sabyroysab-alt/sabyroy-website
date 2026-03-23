@@ -82,7 +82,7 @@ exports.handler = async function (event) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${KIT_API_KEY}`,
+        'X-Kit-Api-Key': KIT_API_KEY,
       },
       body: JSON.stringify({ subscriber }),
     });

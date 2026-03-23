@@ -68,7 +68,7 @@ exports.handler = async function (event) {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${KIT_API_KEY}`,
+        'X-Kit-Api-Key': KIT_API_KEY,
       },
     });
   } catch (networkErr) {
