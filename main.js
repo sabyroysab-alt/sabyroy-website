@@ -509,50 +509,48 @@ function initCinema() {
   const section = document.querySelector('.cinema');
   if (!section) return;
 
+  // ── Image reveal on scroll ──
+  gsap.from('.cinema-img-wrap', {
+    opacity: 0,
+    y: -20,
+    duration: 1.2,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.cinema', start: 'top 80%' }
+  });
+
   // ── Entrance: text lines reveal on scroll ──
   gsap.to('.cinema-eyebrow', {
     opacity: 1,
     y: 0,
-    duration: 1,
-    ease: 'power4.out',
-    scrollTrigger: { trigger: '.cinema', start: 'top 75%' }
+    duration: 0.7,
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.cinema-content', start: 'top 85%' }
   });
 
   gsap.to('.cinema .cl-inner', {
     y: '0%',
-    duration: 1.3,
+    duration: 0.9,
     stagger: 0.12,
-    ease: 'power4.out',
-    scrollTrigger: { trigger: '.cinema', start: 'top 70%' }
+    ease: 'power3.out',
+    scrollTrigger: { trigger: '.cinema-content', start: 'top 80%' }
+  });
+
+  // Gold rule draws in
+  gsap.to('.cinema-rule', {
+    scaleX: 1,
+    duration: 0.8,
+    ease: 'power2.out',
+    delay: 0.3,
+    scrollTrigger: { trigger: '.cinema-content', start: 'top 75%' }
   });
 
   gsap.to('.cinema-sub', {
     opacity: 1,
     y: 0,
-    duration: 1.1,
-    ease: 'power4.out',
+    duration: 0.8,
+    ease: 'power3.out',
     delay: 0.4,
-    scrollTrigger: { trigger: '.cinema', start: 'top 70%' }
-  });
-
-  gsap.to('.cinema-scroll-hint', {
-    opacity: 1,
-    duration: 1,
-    ease: 'power4.out',
-    delay: 0.8,
-    scrollTrigger: { trigger: '.cinema', start: 'top 70%' }
-  });
-
-  // ── Parallax: background image moves slower than scroll ──
-  gsap.to('.cinema-bg', {
-    y: '18%',
-    ease: 'none',
-    scrollTrigger: {
-      trigger: '.cinema',
-      start: 'top top',
-      end: 'bottom top',
-      scrub: true,
-    }
+    scrollTrigger: { trigger: '.cinema-content', start: 'top 75%' }
   });
 
   // ── Parallax: mission background (class selector, not pseudo) ──
@@ -1593,10 +1591,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroLine = document.querySelector('.hero-line');
     if (heroLine) heroLine.style.height = '160px';
     // Cinema section fallback
-    document.querySelectorAll('.cinema-eyebrow, .cinema-sub, .cl-inner, .cinema-scroll-hint').forEach(el => {
+    document.querySelectorAll('.cinema-eyebrow, .cinema-sub, .cl-inner, .cinema-img-wrap').forEach(el => {
       el.style.opacity = 1;
       el.style.transform = 'none';
     });
+    const cinemaRule = document.querySelector('.cinema-rule');
+    if (cinemaRule) cinemaRule.style.transform = 'scaleX(1)';
   }
 
   // Console signature
