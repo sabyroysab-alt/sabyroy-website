@@ -1,0 +1,41 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  DR. SABY ROY — IMAGE PLACEMENT GUIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Save your three photos in THIS folder with THESE exact filenames:
+
+──────────────────────────────────────────────────
+FILE 1: hero-bg.jpg
+  ↳ THE CINEMATIC FACTORY IMAGE
+    (Man in suit walking toward light, with grey suits on conveyor)
+  ↳ Used in: "You are not the problem. The system is." section
+             AND the dark Mission/quote section below it
+  ↳ Tip: Right-click the image in the chat → Save Image As
+         → Name it hero-bg.jpg → Save to this folder
+
+──────────────────────────────────────────────────
+FILE 2: headshot.jpg
+  ↳ YOUR PERSONAL PHOTO
+    (You at the desk in your navy jacket)
+  ↳ Used in: The big hero section (right panel) AND the About section
+  ↳ Tip: Save as headshot.jpg in this folder
+
+──────────────────────────────────────────────────
+FILE 3: course-bg.jpg
+  ↳ THE MEDICAL DESK IMAGE
+    (Leather medical books, pen, glasses, anatomy drawing)
+  ↳ Used in: Background of the Programme/Course section
+  ↳ Tip: Save as course-bg.jpg in this folder
+
+──────────────────────────────────────────────────
+AFTER SAVING:
+  1. Go to http://localhost:8080 (if server is running)
+     OR open index.html in your browser
+  2. Hard-refresh: Cmd + Shift + R  (Mac)
+  3. Images will appear immediately — no code changes needed!
+
+RECOMMENDED FORMAT:
+  - JPG for photos (smaller file = faster site)
+  - Min width: 1400px for hero-bg and course-bg
+  - Min width: 800px for headshot
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

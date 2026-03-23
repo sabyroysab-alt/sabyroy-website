@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin · Dr. Sabyasachi Roy</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      height: 100%;
+      background: #0b0b0f;
+      color: #e8e4d9;
+      font-family: system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .brand {
+      margin-bottom: 2.5rem;
+    }
+
+    .brand__label {
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      color: #333;
+      font-family: monospace;
+      margin-bottom: 0.35rem;
+    }
+
+    .brand__name {
+      font-family: 'Georgia', serif;
+      font-size: 1.1rem;
+      color: #c8b89a;
+      letter-spacing: -0.01em;
+    }
+
+    .brand__divider {
+      margin-top: 0.75rem;
+      height: 1px;
+      background: linear-gradient(90deg, #c8b89a22, transparent);
+    }
+
+    h1 {
+      font-family: 'Georgia', serif;
+      font-size: 1.6rem;
+      font-weight: normal;
+      color: #e8e4d9;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.4rem;
+    }
+
+    .subtitle {
+      font-size: 0.72rem;
+      color: #555;
+      font-family: monospace;
+      margin-bottom: 2rem;
+      letter-spacing: 0.04em;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      color: #3a3a48;
+      font-family: monospace;
+      margin-bottom: 0.4rem;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: #111116;
+      border: 1px solid #1e1e28;
+      border-radius: 10px;
+      color: #e8e4d9;
+      font-size: 1rem;
+      font-family: monospace;
+      letter-spacing: 0.15em;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field input:focus {
+      border-color: #c8b89a44;
+    }
+
+    .error {
+      margin-top: 0.6rem;
+      font-size: 0.68rem;
+      color: #ff6b6b;
+      font-family: monospace;
+      min-height: 1.2em;
+      letter-spacing: 0.04em;
+    }
+
+    .btn {
+      margin-top: 1.25rem;
+      width: 100%;
+      padding: 0.85rem;
+      background: #c8b89a18;
+      border: 1px solid #c8b89a33;
+      border-radius: 10px;
+      color: #c8b89a;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      font-family: monospace;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: #c8b89a28;
+      border-color: #c8b89a55;
+    }
+
+    .back {
+      display: block;
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.62rem;
+      color: #333;
+      font-family: monospace;
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    .back:hover { color: #666; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="brand">
+      <div class="brand__label">DR. SABYASACHI ROY</div>
+      <div class="brand__name">Business OS</div>
+      <div class="brand__divider"></div>
+    </div>
+
+    <h1>Admin Access</h1>
+    <p class="subtitle">PRIVATE · AUTHORISED USERS ONLY</p>
+
+    <div class="field">
+      <label for="code">ACCESS CODE</label>
+      <input
+        type="password"
+        id="code"
+        placeholder="············"
+        autocomplete="current-password"
+        autofocus
+      />
+      <div class="error" id="error"></div>
+    </div>
+
+    <button class="btn" id="enterBtn">ENTER →</button>
+
+    <a href="../index.html" class="back">← back to site</a>
+  </div>
+
+  <script src="../admin-passwords.js"></script>
+  <script>
+    // Skip login if already authenticated
+    if (sessionStorage.getItem('adminAuth') === 'true') {
+      window.location.replace('index.html');
+    }
+
+    const input  = document.getElementById('code');
+    const error  = document.getElementById('error');
+    const btn    = document.getElementById('enterBtn');
+
+    function attempt() {
+      const val = input.value.trim();
+      if (!val) { error.textContent = 'Enter your access code.'; return; }
+
+      if (ADMIN_PASSWORDS.includes(val)) {
+        sessionStorage.setItem('adminAuth', 'true');
+        window.location.replace('index.html');
+      } else {
+        error.textContent = 'Incorrect code. Try again.';
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+  </script>
+</body>
+</html>

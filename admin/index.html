@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard · Dr. Sabyasachi Roy</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      min-height: 100%;
+      background: #0b0b0f;
+      color: #e8e4d9;
+      font-family: system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body { padding: 2.5rem; }
+
+    /* ── Header ─────────────────────────────────── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 3rem;
+      max-width: 900px;
+    }
+
+    .brand__label {
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      color: #333;
+      font-family: monospace;
+      margin-bottom: 0.3rem;
+    }
+
+    .brand__name {
+      font-family: 'Georgia', serif;
+      font-size: 1.05rem;
+      color: #c8b89a;
+    }
+
+    .header__actions {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .btn-sm {
+      padding: 0.4rem 0.9rem;
+      background: transparent;
+      border: 1px solid #1e1e28;
+      border-radius: 7px;
+      color: #555;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      font-family: monospace;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.18s;
+    }
+
+    .btn-sm:hover { color: #888; border-color: #2a2a38; }
+
+    /* ── Page title ─────────────────────────────── */
+    .page-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.3em;
+      color: #3a3a48;
+      font-family: monospace;
+      margin-bottom: 0.4rem;
+      max-width: 900px;
+    }
+
+    h1 {
+      font-family: 'Georgia', serif;
+      font-size: 2rem;
+      font-weight: normal;
+      color: #e8e4d9;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .page-sub {
+      font-size: 0.72rem;
+      color: #555;
+      font-family: monospace;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── Grid ───────────────────────────────────── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      max-width: 900px;
+    }
+
+    /* ── Card ───────────────────────────────────── */
+    .card {
+      background: #111116;
+      border: 1px solid #1e1e28;
+      border-radius: 14px;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s;
+      cursor: pointer;
+      display: block;
+    }
+
+    .card:hover {
+      border-color: #c8b89a33;
+      background: #13131a;
+      transform: translateY(-1px);
+    }
+
+    .card__type {
+      font-size: 0.52rem;
+      letter-spacing: 0.2em;
+      font-family: monospace;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card__dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+    }
+
+    .card__icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.85rem;
+      line-height: 1;
+    }
+
+    .card__title {
+      font-family: 'Georgia', serif;
+      font-size: 1.15rem;
+      color: #e8e4d9;
+      margin-bottom: 0.4rem;
+      font-weight: normal;
+    }
+
+    .card__desc {
+      font-size: 0.72rem;
+      color: #555;
+      font-family: monospace;
+      line-height: 1.6;
+      margin-bottom: 1.1rem;
+    }
+
+    .card__action {
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      font-family: monospace;
+      color: #c8b89a;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+
+    /* Muted "coming soon" card */
+    .card--soon {
+      opacity: 0.4;
+      cursor: default;
+    }
+
+    .card--soon:hover {
+      transform: none;
+      border-color: #1e1e28;
+      background: #111116;
+    }
+
+    .card--soon .card__action {
+      color: #444;
+    }
+
+    /* ── Divider ────────────────────────────────── */
+    .section-label {
+      font-size: 0.52rem;
+      letter-spacing: 0.25em;
+      color: #2a2a38;
+      font-family: monospace;
+      margin: 2.5rem 0 1rem;
+      max-width: 900px;
+    }
+
+    /* ── Footer ─────────────────────────────────── */
+    .footer {
+      margin-top: 3rem;
+      max-width: 900px;
+      padding-top: 1.25rem;
+      border-top: 1px solid #1a1a22;
+      font-size: 0.58rem;
+      color: #252530;
+      font-family: monospace;
+      letter-spacing: 0.08em;
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    // Auth gate — redirect to login if not authenticated
+    if (sessionStorage.getItem('adminAuth') !== 'true') {
+      window.location.replace('login.html');
+    }
+  </script>
+
+  <!-- Header -->
+  <div class="header">
+    <div>
+      <div class="brand__label">DR. SABYASACHI ROY</div>
+      <div class="brand__name">Business OS · Admin</div>
+    </div>
+    <div class="header__actions">
+      <a href="../index.html" class="btn-sm">← Site</a>
+      <button class="btn-sm" id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+  <!-- Title -->
+  <div class="page-label">ADMIN · DASHBOARD</div>
+  <h1>Command Centre</h1>
+  <p class="page-sub">Private access · You &amp; your team only</p>
+
+  <!-- Tools -->
+  <div class="section-label">TOOLS</div>
+  <div class="grid">
+
+    <!-- Business OS -->
+    <a class="card" href="http://localhost:3001" target="_blank" rel="noopener" id="businessOsCard">
+      <div class="card__type" style="color:#c8b89a;">
+        <div class="card__dot" style="background:#c8b89a;"></div>
+        ACTIVE · LOCAL
+      </div>
+      <div class="card__icon">◈</div>
+      <div class="card__title">Business OS</div>
+      <div class="card__desc">
+        Content Studio → generate all 11 platform pieces from one newsletter.<br />
+        Finance tracker with P&amp;L and CSV export.
+      </div>
+      <div class="card__action">OPEN DASHBOARD →</div>
+    </a>
+
+    <!-- Finance Department (full UI) -->
+    <a class="card" href="finance.html">
+      <div class="card__type" style="color:#6bffaa;">
+        <div class="card__dot" style="background:#6bffaa;"></div>
+        ACTIVE · LOCAL API
+      </div>
+      <div class="card__icon">💷</div>
+      <div class="card__title">Finance Department</div>
+      <div class="card__desc">
+        Import bank statements · P&amp;L · manual entries.<br />
+        Auto-categorisation · Excel sync · download workbook.
+      </div>
+      <div class="card__action" style="color:#6bffaa;">OPEN FINANCE →</div>
+    </a>
+
+    <!-- Accounts & Finance (quick download) -->
+    <a class="card" href="accounts.xlsx" download="SabyRoy_Accounts_2025-26.xlsx">
+      <div class="card__type" style="color:#6bffaa;">
+        <div class="card__dot" style="background:#6bffaa;"></div>
+        ACTIVE · EXCEL
+      </div>
+      <div class="card__icon">📊</div>
+      <div class="card__title">Accounts &amp; Finance</div>
+      <div class="card__desc">
+        Trial balance, profit &amp; loss account, and balance sheet.<br />
+        GBP · linked formulas · year-end ready.
+      </div>
+      <div class="card__action" style="color:#6bffaa;">DOWNLOAD WORKBOOK →</div>
+    </a>
+
+    <!-- Study Zone -->
+    <a class="card" href="../study-zone/login.html" target="_blank" rel="noopener">
+      <div class="card__type" style="color:#5BC4FF;">
+        <div class="card__dot" style="background:#5BC4FF;"></div>
+        ACTIVE
+      </div>
+      <div class="card__icon">⏱</div>
+      <div class="card__title">Study Zone</div>
+      <div class="card__desc">
+        Pomodoro &amp; deep work timers, ambient music, study method library, session tracker.
+      </div>
+      <div class="card__action" style="color:#5BC4FF;">OPEN STUDY ZONE →</div>
+    </a>
+
+    <!-- Coming soon -->
+    <div class="card card--soon">
+      <div class="card__type" style="color:#333;">
+        <div class="card__dot" style="background:#333;"></div>
+        PHASE 2
+      </div>
+      <div class="card__icon" style="opacity:0.3;">⚡</div>
+      <div class="card__title">Auto-Publish</div>
+      <div class="card__desc">
+        One-click publish to X, LinkedIn, Substack, Instagram once approved in Business OS.
+      </div>
+      <div class="card__action">COMING SOON</div>
+    </div>
+
+    <div class="card card--soon">
+      <div class="card__type" style="color:#333;">
+        <div class="card__dot" style="background:#333;"></div>
+        PHASE 2
+      </div>
+      <div class="card__icon" style="opacity:0.3;">📊</div>
+      <div class="card__title">Analytics</div>
+      <div class="card__desc">
+        Unified analytics across all platforms — reach, engagement, revenue attribution.
+      </div>
+      <div class="card__action">COMING SOON</div>
+    </div>
+
+  </div>
+
+  <!-- Note -->
+  <div class="section-label">NOTE</div>
+  <p style="font-size:0.68rem;color:#333;font-family:monospace;max-width:600px;line-height:1.8;">
+    Business OS is currently running locally at <span style="color:#c8b89a44;">localhost:3001</span>.<br />
+    Finance API URL: <span style="color:#6bffaa44;" id="financeApiDisplay">localhost:5050</span> — start locally with <code style="color:#3a3a48;">python3 finance_api.py</code> or deploy to Railway.<br />
+    Use <code style="color:#3a3a48;">start_all.sh</code> (or <code style="color:#3a3a48;">start_all.bat</code> on Windows) to launch everything together.
+  </p>
+
+  <div class="footer">
+    <span>Business OS v0.1 · Phase 1</span>
+    <span>Private · Not indexed</span>
+  </div>
+
+  <script>
+    // ── Finance API base URL ─────────────────────────────────────────────
+    // Set window.FINANCE_API_URL via a <script> tag before this file loads,
+    // or it falls back to localhost for local development.
+    const FINANCE_API = window.FINANCE_API_URL || 'http://localhost:5050';
+
+    // Update the display in the note section to reflect actual URL
+    const _finDisp = document.getElementById('financeApiDisplay');
+    if (_finDisp) _finDisp.textContent = FINANCE_API;
+
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+      sessionStorage.removeItem('adminAuth');
+      window.location.replace('login.html');
+    });
+  </script>
+
+</body>
+</html>

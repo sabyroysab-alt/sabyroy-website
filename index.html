@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Dr. Saby Roy — Doctor, Medical Educator & Coach. Build the life you designed, not the one you defaulted into."/>
+  <title>Dr. Saby Roy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=block" rel="stylesheet"/>
+  <!-- Critical: set background before style.css loads to prevent white flash -->
+  <style>html,body{background:#0C0C0A}</style>
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- ═══════════════════════════════════════════════════
+       GOOGLE ANALYTICS 4
+       HOW TO ACTIVATE:
+       1. Go to analytics.google.com → sign in with Google
+       2. Create Account → Create Property → name it "SabyRoy Website"
+       3. Choose "Web" → enter sabyroy.com
+       4. Copy your Measurement ID (looks like G-AB12CD34EF)
+       5. Replace BOTH instances of G-XXXXXXXXXX below with your ID
+       6. Save → push to GitHub → done. You're tracking.
+  ═══════════════════════════════════════════════════ -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title:    document.title,
+      page_location: window.location.href,
+    });
+
+    // Track newsletter subscriptions as conversions
+    window.trackSubscribe = function(source) {
+      gtag('event', 'subscribe', {
+        event_category: 'engagement',
+        event_label:    source || 'website',
+        value: 1
+      });
+    };
+  </script>
+</head>
+<body>
+
+  <!-- GRAIN OVERLAY (premium texture — never remove) -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-bar" id="scrollBar"></div>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"><div class="cursor-inner"></div></div>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="pl-content">
+      <p class="pl-name">Dr. Saby Roy</p>
+      <div class="pl-line"><div class="pl-fill" id="plFill"></div></div>
+    </div>
+  </div>
+
+  <!-- ══════════════ NAV ══════════════ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero" id="navLogo">Dr. Saby Roy</a>
+      <div class="nav-links" id="navLinks">
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#programme">Programme</a>
+        <a class="nav-link" href="#resources">Resources</a>
+        <a class="nav-link" href="#subscribe">Newsletter</a>
+        <a class="nav-signin" href="#" id="navSignIn">Sign In</a>
+        <a class="nav-cta" href="#programme" id="navCta">Work With Me</a>
+      </div>
+      <button class="nav-ham" id="navHam" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+    <div class="nav-mobile" id="navMobile">
+      <a class="nm-link" href="#about">About</a>
+      <a class="nm-link" href="#programme">Programme</a>
+      <a class="nm-link" href="#resources">Resources</a>
+      <a class="nm-link" href="#subscribe">Newsletter</a>
+      <a class="nm-link nm-cta" href="#programme">Work With Me →</a>
+    </div>
+  </nav>
+
+  <!-- ══════════════ HERO ══════════════ -->
+  <section class="hero" id="hero">
+
+    <!-- Video background -->
+    <div class="hero-video-wrap">
+      <video id="heroVideo" autoplay muted loop playsinline></video>
+    </div>
+
+    <!-- Overlays -->
+    <div class="hero-overlay"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-fade"></div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <p class="hero-eyebrow" id="heroEyebrow"></p>
+      <h1 class="hero-hed" id="heroHed"></h1>
+      <p class="hero-sub" id="heroSub"></p>
+      <div class="hero-ctas">
+        <form class="hero-form" id="heroForm" novalidate>
+          <div class="hero-field">
+            <input type="email" class="hero-input" id="heroEmail" placeholder="Your email address" required aria-label="Email address"/>
+            <button type="submit" class="hero-btn" id="heroCta"></button>
+          </div>
+          <p class="hero-note" id="heroNote"></p>
+        </form>
+        <a class="hero-btn-ghost" href="#programme">Explore the Programme →</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ══════════════ MARQUEE — divider line only ══════════════ -->
+  <div class="marquee" aria-hidden="true"></div>
+
+  <!-- ══════════════ CINEMATIC STATEMENT ══════════════ -->
+  <!--
+    IMAGE 1 (transformation/factory photo) → save as:
+      /Users/sabyasachiroy/sabyroy-website/assets/hero-bg.jpg
+    This fills the dark background here AND the mission section below.
+  -->
+  <section class="cinema" id="cinema">
+    <div class="cinema-bg" aria-hidden="true"></div>
+    <div class="cinema-vignette" aria-hidden="true"></div>
+    <div class="cinema-inner">
+      <p class="cinema-eyebrow">The Transformation</p>
+      <h2 class="cinema-hed">
+        <span class="cinema-line"><span class="cl-inner">You are not</span></span>
+        <span class="cinema-line"><span class="cl-inner">the problem.</span></span>
+        <span class="cinema-line cinema-em"><span class="cl-inner">The system is.</span></span>
+      </h2>
+      <p class="cinema-sub">High-achievers don't burn out because they work too hard.<br class="d-only"/> They burn out because no one ever designed their life with their biology in mind.</p>
+      <div class="cinema-scroll-hint" aria-hidden="true">
+        <span class="csh-line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ MISSION ══════════════ -->
+  <section class="mission" id="mission">
+    <div class="mission-inner">
+      <div class="miss-rule" aria-hidden="true"></div>
+      <blockquote class="miss-quote" id="missQuote"></blockquote>
+      <p class="miss-body" id="missBody"></p>
+    </div>
+  </section>
+
+  <!-- ══════════════ STATS BAR ══════════════ -->
+  <div class="stats-bar" id="statsBar">
+    <!-- Rendered by JS from content.js -->
+  </div>
+
+  <!-- ══════════════ ABOUT ══════════════ -->
+  <section class="about" id="about">
+    <div class="about-wrap">
+      <div class="about-img-col">
+        <div class="about-img-outer">
+          <div class="about-img-curtain"></div>
+          <img class="about-img" src="assets/headshot.jpg" alt="Dr. Saby Roy"/>
+          <div class="about-img-ghost"><span>Your photo here</span></div>
+        </div>
+        <div class="about-stat" id="aboutStat">
+          <span class="as-n" id="aboutStatNum"></span>
+          <span class="as-l" id="aboutStatLabel"></span>
+        </div>
+      </div>
+      <div class="about-body">
+        <p class="section-label">About</p>
+        <h2 class="about-hed" id="aboutHed"></h2>
+        <p class="about-lead" id="aboutLead"></p>
+        <div id="aboutParas"></div>
+        <div class="about-areas" id="aboutAreas"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ PROGRAMME ══════════════ -->
+  <section class="prog" id="programme">
+    <div class="prog-inner">
+      <div class="prog-left">
+        <p class="section-label light" id="progLabel"></p>
+        <h2 class="prog-hed" id="progHed"></h2>
+        <p class="prog-lead" id="progLead"></p>
+        <p class="prog-body" id="progBody"></p>
+        <div class="prog-pts" id="progPts"></div>
+        <a class="prog-cta magnetic" id="progCta" href="#"></a>
+      </div>
+      <div class="prog-right">
+        <div class="prog-panel">
+          <p class="panel-eyebrow">What shifts in 6 weeks</p>
+          <div id="progOutcomes"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ RESOURCES ══════════════ -->
+  <section class="resources" id="resources">
+    <div class="container">
+
+      <div class="res-header">
+        <p class="section-label">Free Resources</p>
+        <h2 class="res-hed">Ideas that don't<br/>ask anything of you.</h2>
+        <p class="res-sub">Everything here is free. Because the right knowledge at the right time<br class="d-only"/>can change the trajectory of a life.</p>
+      </div>
+
+      <!-- Newsletter card -->
+      <div class="nl-row">
+        <div class="nl-left">
+          <p class="nl-tag" id="nlTag"></p>
+          <h3 class="nl-title" id="nlTitle"></h3>
+          <p class="nl-desc" id="nlDesc"></p>
+          <a class="nl-link" href="#subscribe">Subscribe — Free</a>
+        </div>
+        <div class="nl-right">
+          <div class="nl-card">
+            <div class="nlc-top">
+              <span class="nlc-label">Latest Issue</span>
+              <span class="nlc-sep">·</span>
+              <span class="nlc-freq">Weekly</span>
+            </div>
+            <p class="nlc-title" id="nlcTitle"></p>
+            <p class="nlc-prev" id="nlcPrev"></p>
+            <div class="nlc-foot">
+              <span>5 min read</span>
+              <span>·</span>
+              <span>Evidence-based</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Videos -->
+      <div class="vids-section">
+        <div class="vids-head">
+          <h3 class="vids-title">Video Library</h3>
+          <a class="vids-yt" href="#" id="ytLink" target="_blank" rel="noopener">YouTube Channel →</a>
+        </div>
+        <div class="vids-grid" id="vidsGrid"></div>
+        <p class="vids-note">Videos launching soon. <a href="#subscribe">Subscribe to be notified.</a></p>
+      </div>
+
+      <!-- Pillars -->
+      <div class="pillars">
+        <h3 class="pillars-title">What I write &amp; teach about</h3>
+        <div class="pillars-list">
+          <div class="pillar-row">
+            <span class="pr-num">01</span>
+            <span class="pr-name">Medical Education</span>
+            <span class="pr-desc">Rethinking how clinicians learn, teach, and lead in a rapidly changing world.</span>
+          </div>
+          <div class="pillar-row">
+            <span class="pr-num">02</span>
+            <span class="pr-name">Personal Development</span>
+            <span class="pr-desc">Evidence-based frameworks for habits, clarity, and a life that matches your values.</span>
+          </div>
+          <div class="pillar-row">
+            <span class="pr-num">03</span>
+            <span class="pr-name">AI &amp; Technology</span>
+            <span class="pr-desc">How AI is reshaping healthcare, education, and what it means to do meaningful work.</span>
+          </div>
+          <div class="pillar-row">
+            <span class="pr-num">04</span>
+            <span class="pr-name">Personal Brand &amp; Business</span>
+            <span class="pr-desc">How to turn your knowledge and story into something that grows and earns.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ══════════════ STUDY ZONE GATE ══════════════ -->
+  <section class="study-gate" id="study">
+    <div class="sg-inner">
+      <div class="sg-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+      </div>
+      <p class="section-label light">Members Only</p>
+      <h2 class="sg-hed">The Study Zone</h2>
+      <p class="sg-sub">Your personal study environment. Curated notes, frameworks and resources — password protected, just for you.</p>
+      <div class="pw-field sg-pw-wrap">
+        <input type="password" class="sg-input" id="studyPwInput" placeholder="Enter study password" autocomplete="current-password"/>
+        <button type="button" class="pw-toggle" id="studyPwToggle" aria-label="Show/hide password">
+          <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg class="icon-eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </button>
+      </div>
+      <p class="sg-error" id="studyPwError"></p>
+      <button class="sg-btn magnetic" id="studySubmit">Enter the Study Zone →</button>
+      <p class="sg-note">Subscribers can also access this via the <a href="#" id="sgSignInLink">Sign In</a> menu above.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ SUBSCRIBE ══════════════ -->
+  <section class="subscribe" id="subscribe">
+    <div class="sub-inner">
+      <div class="sub-left">
+        <p class="section-label light" id="subLabel"></p>
+        <h2 class="sub-hed" id="subHed"></h2>
+        <p class="sub-desc" id="subDesc"></p>
+        <div class="sub-gifts" id="subGifts"></div>
+      </div>
+      <div class="sub-right">
+        <form class="sub-form" id="subForm" novalidate>
+          <h3 class="sub-form-title" id="subFormTitle"></h3>
+          <div class="sub-field">
+            <label class="sub-label">First name</label>
+            <input type="text" class="sub-input" placeholder="Your first name"/>
+          </div>
+          <div class="sub-field">
+            <label class="sub-label">Email address</label>
+            <input type="email" class="sub-input" placeholder="your@email.com" required/>
+          </div>
+          <div class="sub-field">
+            <label class="sub-label">What brings you here?</label>
+            <select class="sub-input sub-select">
+              <option value="" disabled selected>Select one</option>
+              <option>Health &amp; Energy</option>
+              <option>Medical Education</option>
+              <option>Personal Development</option>
+              <option>AI &amp; Technology</option>
+              <option>Building a Personal Brand</option>
+            </select>
+          </div>
+          <button type="submit" class="sub-btn" id="subBtn"></button>
+          <p class="sub-note" id="subNote"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ TESTIMONIALS ══════════════ -->
+  <section class="testis" id="testimonials">
+    <div class="container">
+      <p class="section-label">What people say</p>
+      <div class="testi-track" id="testiTrack"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="foot-top">
+        <div class="foot-brand">
+          <p class="foot-logo" id="footLogo"></p>
+          <p class="foot-tag" id="footTag"></p>
+          <div class="foot-socials" id="footSocials"></div>
+        </div>
+        <div class="foot-col">
+          <p class="fc-head">Navigate</p>
+          <a href="#about">About</a>
+          <a href="#programme">Programme</a>
+          <a href="#resources">Resources</a>
+          <a href="#subscribe">Newsletter</a>
+        </div>
+        <div class="foot-col">
+          <p class="fc-head">Topics</p>
+          <a href="#resources">Medical Education</a>
+          <a href="#resources">Personal Development</a>
+          <a href="#resources">AI &amp; Technology</a>
+          <a href="#resources">Personal Brand</a>
+        </div>
+        <div class="foot-col" id="footSocialCol">
+          <p class="fc-head">Connect</p>
+        </div>
+      </div>
+      <div class="foot-bottom">
+        <p class="foot-copy">&copy; <span id="footYear"></span> <span id="footName"></span>. All rights reserved.</p>
+        <div class="foot-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms</a>
+          <a href="#">Disclaimer</a>
+        </div>
+      </div>
+      <div class="foot-disclaimer-row">
+        <p class="foot-disclaimer" id="footDisclaimer"></p>
+        <button class="foot-admin-btn" id="adminTrigger" title="Admin access">⚙ Admin</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ══════════════ MODAL ══════════════ -->
+  <div class="modal-wrap" id="modal" role="dialog" aria-modal="true">
+    <div class="modal-box">
+      <button class="modal-x" id="modalX" aria-label="Close">&#10005;</button>
+      <p class="modal-label">Before you go</p>
+      <h3 class="modal-title">Two free resources.<br/>Yours immediately.</h3>
+      <div class="modal-gifts" id="modalGifts"></div>
+      <form class="modal-form" id="modalForm" novalidate>
+        <input type="email" class="modal-input" placeholder="Your email address" required/>
+        <button type="submit" class="modal-btn">Send me both →</button>
+      </form>
+      <p class="modal-note">No spam. One click to unsubscribe.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════ TOAST ══════════════ -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <div class="toast-dot"></div>
+    <span id="toastMsg">You're subscribed. Check your inbox.</span>
+  </div>
+
+  <!-- ══════════════ SUBSCRIBER SIGN-IN PANEL ══════════════ -->
+  <div class="signin-wrap" id="signinWrap" role="dialog" aria-modal="true" aria-label="Member sign in">
+    <div class="signin-panel" id="signinPanel">
+      <div class="sp-head">
+        <p class="sp-label">Member Area</p>
+        <button class="sp-close" id="signinClose" aria-label="Close">&#10005;</button>
+      </div>
+      <!-- Login form (shown when not logged in) -->
+      <div class="sp-login" id="spLogin">
+        <h3 class="sp-title">Sign in</h3>
+        <p class="sp-sub">Subscribers enter the password from your welcome email.</p>
+        <div class="pw-field">
+          <input type="password" class="sp-input" id="signinPwInput" placeholder="Subscriber password" autocomplete="current-password"/>
+          <button type="button" class="pw-toggle" id="signinPwToggle" aria-label="Show/hide">
+            <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            <svg class="icon-eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          </button>
+        </div>
+        <p class="sp-error" id="signinError"></p>
+        <button class="sp-btn" id="signinSubmit">Sign In →</button>
+        <p class="sp-note">Not a subscriber yet? <a href="#subscribe">Subscribe free →</a></p>
+      </div>
+      <!-- Member area (shown after login) -->
+      <div class="sp-area" id="spArea" style="display:none">
+        <h3 class="sp-welcome" id="spWelcome"></h3>
+        <p class="sp-area-sub" id="spAreaSub"></p>
+        <div class="sp-links" id="spLinks"></div>
+        <button class="sp-signout" id="spSignout">Sign out</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ ADMIN LOGIN ══════════════ -->
+  <div class="admin-wrap" id="adminWrap" role="dialog" aria-modal="true" aria-label="Admin login">
+    <div class="admin-login">
+      <button class="admin-close" id="adminClose" aria-label="Close">&#10005;</button>
+      <p class="admin-label" id="adminLabel">Admin Access</p>
+      <h3 class="admin-title" id="adminTitle">Enter password</h3>
+      <div class="pw-field">
+        <input type="password" class="admin-input" id="adminPwInput" placeholder="Password" autocomplete="current-password"/>
+        <button type="button" class="pw-toggle" id="adminPwToggle" aria-label="Show/hide password">
+          <svg class="icon-eye" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          <svg class="icon-eye-off" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0112 20c-7 0-11-8-11-8a18.45 18.45 0 015.06-5.94M9.9 4.24A9.12 9.12 0 0112 4c7 0 11 8 11 8a18.5 18.5 0 01-2.16 3.19m-6.72-1.07a3 3 0 11-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+        </button>
+      </div>
+      <p class="admin-error" id="adminError"></p>
+      <button class="admin-btn" id="adminSubmit">Enter →</button>
+      <p class="admin-hint">Shift + click Admin button to reset password.</p>
+    </div>
+  </div>
+
+  <!-- ══════════════ ADMIN DASHBOARD ══════════════ -->
+  <div class="adm-wrap" id="admWrap" role="dialog" aria-modal="true" aria-label="Admin dashboard">
+    <div class="adm-panel">
+      <div class="adm-head">
+        <p class="adm-brand">⚙ &nbsp;Admin Dashboard</p>
+        <button class="adm-close" id="admClose" aria-label="Close admin">&#10005;</button>
+      </div>
+      <div class="adm-tabs">
+        <button class="adm-tab active" data-tab="subs">Subscribers</button>
+        <button class="adm-tab" data-tab="status">Site Status</button>
+      </div>
+      <div class="adm-body">
+        <div class="adm-pane" id="admSubs">
+          <div class="adm-pane-head">
+            <p class="adm-pane-title">Subscribers (<span id="admSubCount">0</span>)</p>
+            <button class="adm-export" id="admExport">Export CSV</button>
+          </div>
+          <div class="adm-table-wrap">
+            <table class="adm-table">
+              <thead><tr><th>Email</th><th>Name</th><th>Source</th><th>Date</th></tr></thead>
+              <tbody id="admTableBody"></tbody>
+            </table>
+            <p class="adm-empty" id="admEmpty" style="display:none">No subscribers yet.</p>
+          </div>
+        </div>
+        <div class="adm-pane" id="admStatus" style="display:none">
+          <div class="adm-status-grid" id="admStatusGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts: content first, then GSAP, then app -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="content.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>

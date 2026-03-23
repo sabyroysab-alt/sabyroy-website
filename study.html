@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Study Zone — Dr. Saby Roy</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ── Study Zone Page Styles ── */
+    body { background: var(--cream); }
+
+    .sz-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(247,244,239,0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--cream-2);
+      padding: 0 2rem;
+    }
+    .sz-nav-inner {
+      max-width: 1120px; margin: 0 auto;
+      height: 64px; display: flex;
+      align-items: center; justify-content: space-between;
+    }
+    .sz-logo {
+      font-family: var(--display);
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--ink); text-decoration: none;
+    }
+    .sz-logo span {
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--forest); margin-left: 0.75rem;
+      background: rgba(27,67,50,0.08);
+      padding: 0.2rem 0.55rem;
+      vertical-align: middle;
+    }
+    .sz-nav-right { display: flex; align-items: center; gap: 1rem; }
+    .sz-back {
+      font-size: 0.8rem; font-weight: 500;
+      color: var(--ink-45);
+      text-decoration: none;
+      transition: color 0.2s;
+      display: flex; align-items: center; gap: 0.35rem;
+    }
+    .sz-back:hover { color: var(--ink); }
+    .sz-logout {
+      font-size: 0.75rem; font-weight: 500;
+      color: var(--ink-45); background: none;
+      border: 1px solid var(--cream-2);
+      padding: 0.45rem 0.9rem; cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .sz-logout:hover { color: var(--ink); border-color: var(--ink-20); }
+
+    .sz-hero {
+      background: var(--ink);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .sz-hero::before {
+      content: '';
+      position: absolute; inset: -10%;
+      background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(27,67,50,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .sz-hero-label {
+      font-size: 0.62rem; font-weight: 600;
+      letter-spacing: 0.28em; text-transform: uppercase;
+      color: var(--gold-lite); margin-bottom: 1.25rem;
+      position: relative; z-index: 1;
+    }
+    .sz-hero-hed {
+      font-family: var(--display);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 300; line-height: 1.06;
+      letter-spacing: -0.025em; color: var(--white);
+      margin-bottom: 1rem; position: relative; z-index: 1;
+    }
+    .sz-hero-sub {
+      font-size: 1rem; color: rgba(255,255,255,0.4);
+      line-height: 1.8; max-width: 500px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+
+    .sz-body { max-width: 1120px; margin: 0 auto; padding: 5rem 2rem; }
+
+    .sz-section-label {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--ink-45); margin-bottom: 2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .sz-section-label::after {
+      content: ''; flex: 1; height: 1px; background: var(--cream-2);
+    }
+
+    .sz-filter-row { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+
+    .sz-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem; margin-bottom: 5rem;
+    }
+    .sz-card {
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 2rem;
+      transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease);
+      cursor: pointer;
+    }
+    .sz-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.08); }
+    .sz-card-icon { font-size: 2rem; margin-bottom: 1.25rem; display: block; line-height: 1; }
+    .sz-card-cat {
+      font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--forest-mid); margin-bottom: 0.5rem;
+    }
+    .sz-card-title {
+      font-family: var(--display);
+      font-size: 1.3rem; font-weight: 400;
+      color: var(--ink); line-height: 1.25; margin-bottom: 0.7rem;
+    }
+    .sz-card-desc { font-size: 0.87rem; color: var(--ink-45); line-height: 1.7; margin-bottom: 1.5rem; }
+    .sz-card-link {
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--ink); border-bottom: 1px solid var(--ink-20);
+      padding-bottom: 2px; display: inline-block;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .sz-card-link:hover { color: var(--forest); border-color: var(--forest); }
+
+    .sz-notes {
+      background: var(--cream-2);
+      border: 1px solid rgba(0,0,0,0.06);
+      padding: 2.5rem;
+    }
+    .sz-notes-title {
+      font-family: var(--display);
+      font-size: 1.4rem; font-weight: 400;
+      color: var(--ink); margin-bottom: 0.5rem;
+    }
+    .sz-notes-sub { font-size: 0.82rem; color: var(--ink-45); margin-bottom: 1.25rem; }
+    .sz-notes-area {
+      width: 100%; min-height: 200px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem; color: var(--ink);
+      background: var(--white);
+      border: 1px solid rgba(0,0,0,0.08);
+      padding: 1rem 1.25rem;
+      resize: vertical; line-height: 1.8;
+      transition: border-color 0.25s;
+    }
+    .sz-notes-area:focus { border-color: var(--forest); outline: none; }
+    .sz-notes-save {
+      margin-top: 0.75rem;
+      font-size: 0.8rem; font-weight: 600;
+      color: var(--white); background: var(--forest-mid);
+      border: none; padding: 0.7rem 1.5rem; cursor: pointer;
+      transition: background 0.25s;
+    }
+    .sz-notes-save:hover { background: var(--forest); }
+    .sz-notes-saved {
+      font-size: 0.75rem; color: var(--forest);
+      margin-left: 0.75rem; opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .sz-footer {
+      text-align: center; padding: 3rem 2rem;
+      border-top: 1px solid var(--cream-2);
+      font-size: 0.75rem; color: var(--ink-20);
+    }
+    .sz-footer a { color: var(--forest); }
+
+    @media (max-width: 580px) {
+      .sz-grid { grid-template-columns: 1fr; }
+      .sz-hero { padding: 3.5rem 1.5rem 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- GRAIN OVERLAY -->
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav class="sz-nav">
+    <div class="sz-nav-inner">
+      <a class="sz-logo" href="index.html">
+        Dr. Saby Roy <span>Study Zone</span>
+      </a>
+      <div class="sz-nav-right">
+        <a class="sz-back" href="index.html">← Back to site</a>
+        <button class="sz-logout" id="szLogout">Lock &amp; Exit</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="sz-hero" id="szHero">
+    <p class="sz-hero-label">Private Study Environment</p>
+    <h1 class="sz-hero-hed" id="szHed">The Study Zone</h1>
+    <p class="sz-hero-sub" id="szSub">Your curated study environment.</p>
+  </div>
+
+  <!-- BODY -->
+  <div class="sz-body">
+
+    <!-- Resource Cards -->
+    <p class="sz-section-label">Study Materials</p>
+    <div class="sz-filter-row" id="szFilters"></div>
+    <div class="sz-grid" id="szGrid"></div>
+
+    <!-- Personal Notes -->
+    <p class="sz-section-label">My Notes</p>
+    <div class="sz-notes">
+      <h3 class="sz-notes-title">Quick Notes</h3>
+      <p class="sz-notes-sub">Your personal notes — saved locally in this browser.</p>
+      <textarea class="sz-notes-area" id="szNotesArea" placeholder="Write your notes here..."></textarea>
+      <div>
+        <button class="sz-notes-save" id="szNotesSave">Save Notes</button>
+        <span class="sz-notes-saved" id="szNotesSaved">✓ Saved</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer class="sz-footer">
+    <p>Dr. Saby Roy Study Zone &nbsp;·&nbsp; <a href="index.html">Return to main site</a></p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="content.js"></script>
+  <script>
+    // ── Guard: redirect if no study session ──
+    if (!sessionStorage.getItem('sr_study_session')) {
+      window.location.replace('index.html#study');
+    }
+
+    const C  = CONTENT;
+    const SZ = C.study_zone || {};
+
+    // Populate hero
+    if (SZ.headline)    document.getElementById('szHed').textContent = SZ.headline;
+    if (SZ.subheadline) document.getElementById('szSub').textContent = SZ.subheadline;
+
+    // Items (merge localStorage overrides from admin)
+    const override = JSON.parse(localStorage.getItem('sr_study_override') || 'null');
+    const items    = override || (SZ.items || []);
+
+    // Filter pills
+    const filtersEl = document.getElementById('szFilters');
+    const cats      = ['All', ...new Set(items.map(i => i.category))];
+    filtersEl.innerHTML = cats.map((c, idx) =>
+      `<button class="sf-pill${idx === 0 ? ' active' : ''}" data-cat="${c === 'All' ? 'all' : c}">${c}</button>`
+    ).join('');
+    filtersEl.addEventListener('click', e => {
+      const btn = e.target.closest('.sf-pill');
+      if (!btn) return;
+      filtersEl.querySelectorAll('.sf-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      document.querySelectorAll('.sz-card').forEach(card => {
+        card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
+      });
+    });
+
+    // Cards
+    const gridEl = document.getElementById('szGrid');
+    gridEl.innerHTML = items.map((item, i) => `
+      <div class="sz-card" data-cat="${item.category}">
+        <span class="sz-card-icon">${item.icon}</span>
+        <p class="sz-card-cat">${item.category}</p>
+        <h3 class="sz-card-title">${item.title}</h3>
+        <p class="sz-card-desc">${item.desc}</p>
+        <a class="sz-card-link" href="${item.link}"${item.link !== '#' ? ' target="_blank" rel="noopener"' : ''}>${item.link === '#' ? 'Coming Soon' : 'Open →'}</a>
+      </div>
+    `).join('');
+
+    // Notes — load saved
+    const notesArea  = document.getElementById('szNotesArea');
+    const notesSave  = document.getElementById('szNotesSave');
+    const notesSaved = document.getElementById('szNotesSaved');
+    const NOTES_KEY  = 'sr_study_notes';
+    notesArea.value  = localStorage.getItem(NOTES_KEY) || '';
+    notesSave.addEventListener('click', () => {
+      localStorage.setItem(NOTES_KEY, notesArea.value);
+      notesSaved.style.opacity = '1';
+      setTimeout(() => notesSaved.style.opacity = '0', 2000);
+    });
+    // Auto-save on typing (debounced)
+    let saveTimer;
+    notesArea.addEventListener('input', () => {
+      clearTimeout(saveTimer);
+      saveTimer = setTimeout(() => {
+        localStorage.setItem(NOTES_KEY, notesArea.value);
+        notesSaved.style.opacity = '1';
+        setTimeout(() => notesSaved.style.opacity = '0', 1500);
+      }, 1500);
+    });
+
+    // Logout
+    document.getElementById('szLogout').addEventListener('click', () => {
+      sessionStorage.removeItem('sr_study_session');
+      window.location.href = 'index.html#study';
+    });
+  </script>
+
+</body>
+</html>

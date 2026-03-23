@@ -1,0 +1,266 @@
+════════════════════════════════════════════════════════════════
+  DR. SABY ROY — COMPLETE DEPLOYMENT GUIDE
+  Keep this file. You will refer to it multiple times.
+════════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PART 1 — GITHUB SETUP  (your code home — do this first)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to github.com → Sign up (free) → use your personal email
+
+2. Download GitHub Desktop:
+   desktop.github.com → download for Mac
+
+3. Open GitHub Desktop:
+   File → Add Local Repository → navigate to your sabyroy-website folder
+   If it says "not a repository" → click "create a repository" instead
+
+4. Write a first commit message:
+   Summary field: "Initial website launch"
+   Click "Commit to main"
+
+5. Click "Publish Repository"
+   → Name: sabyroy-website
+   → Keep it PRIVATE (no one can see your code)
+   → Click Publish Repository
+
+✅ Your code is now backed up on GitHub
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PART 2 — VERCEL DEPLOYMENT  (your hosting — free)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to vercel.com
+   → Click "Sign Up" → Continue with GitHub
+   → Authorise Vercel to access your GitHub
+
+2. Click "Add New Project"
+   → You will see sabyroy-website listed
+   → Click Import
+
+3. Leave all settings as default
+   → Click Deploy
+
+4. Wait 30 seconds.
+   You now have a live URL like: sabyroy-website-abc.vercel.app
+
+5. Test it on your phone right now — open that URL on mobile.
+
+✅ Your website is live on the internet
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PART 3 — BUY YOUR DOMAIN  (sabyroy.com — ~£10/year)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to namecheap.com
+   Search: sabyroy.com
+   If available → Add to Cart → Checkout
+   Cost: ~£10-12/year
+   TIP: Also buy sabyroy.co.uk (~£5/yr) to protect your brand
+
+2. At checkout:
+   → Choose "WhoIsGuard" (privacy protection) — FREE, tick it
+   → Pay with card
+   → You now own sabyroy.com
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PART 4 — CONNECT DOMAIN TO VERCEL  (DNS Setup)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP A — Add domain in Vercel:
+  1. Vercel → Your project → Settings → Domains
+  2. Type: sabyroy.com → click Add
+  3. Type: www.sabyroy.com → click Add
+  4. Vercel will show you DNS records. You need these two:
+
+     TYPE    NAME    VALUE
+     ─────────────────────────────────────────────────────
+     A       @       76.76.21.21
+     CNAME   www     cname.vercel-dns.com
+     ─────────────────────────────────────────────────────
+     (copy the exact values Vercel shows you — they may differ slightly)
+
+STEP B — Add those records in Namecheap:
+  1. Namecheap → sign in → Domain List
+  2. Click "Manage" next to sabyroy.com
+  3. Click "Advanced DNS" tab
+  4. Delete any existing A records and CNAME records (the default ones)
+  5. Click "Add New Record":
+
+     First record:
+     → Type:    A Record
+     → Host:    @
+     → Value:   76.76.21.21  (or whatever Vercel showed)
+     → TTL:     Automatic
+
+     Second record:
+     → Type:    CNAME Record
+     → Host:    www
+     → Value:   cname.vercel-dns.com
+     → TTL:     Automatic
+
+  6. Click the green tick to save each record
+
+STEP C — Wait and verify:
+  → DNS changes take 5-30 minutes (sometimes up to 2 hours)
+  → Go back to Vercel → Domains → it will show a green tick ✅
+  → Open sabyroy.com in your browser — your website appears!
+
+✅ sabyroy.com is now your live website address
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PART 5 — KIT (CONVERTKIT) EMAIL SETUP
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to kit.com → Start for free
+   Sign up with your email → verify account
+
+2. GET YOUR FORM ID:
+   → Grow → Landing Pages & Forms
+   → Create a new Form → name it "Website Subscribers"
+   → Style it however you like (it won't be shown on site)
+   → Save the form
+   → Look at the URL: app.kit.com/forms/1234567/edit
+                                              ↑
+                                         This is your Form ID
+
+3. GET YOUR PUBLIC API KEY:
+   → Settings (bottom left) → Developer
+   → Under "API Keys" → copy your "API Key" (NOT the secret key)
+   The API key looks like: aBcDeFgH12345678
+
+4. ADD BOTH TO YOUR WEBSITE:
+   Open sabyroy-website/content.js in any text editor
+   Find this section near the bottom:
+
+     email_provider: {
+       provider:    "kit",
+       api_key:     "",       ← paste your API key between the quotes
+       form_id:     "",       ← paste your Form ID between the quotes
+       tag_id:      "",       ← optional, leave empty for now
+     },
+
+   Example when filled in:
+     api_key:  "aBcDeFgH12345678",
+     form_id:  "1234567",
+
+5. SAVE THE FILE → GitHub Desktop → commit → push
+   Vercel re-deploys automatically in 30 seconds
+
+6. TEST IT:
+   Go to sabyroy.com → enter your own email in the hero form → submit
+   Go to Kit → Subscribers → you should see your email appear within 1 minute
+
+✅ Every subscriber now flows directly into Kit
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  PART 6 — GOOGLE ANALYTICS SETUP  (free traffic tracking)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Go to analytics.google.com
+   Sign in with your Google account
+
+2. Click "Start measuring"
+   → Account name: Dr. Saby Roy
+   → Property name: SabyRoy Website
+   → Country: United Kingdom → Currency: British Pound (£)
+   → Next → Next
+
+3. Platform: Web
+   → Website URL: sabyroy.com
+   → Stream name: Main Site
+   → Click "Create stream"
+
+4. Copy your Measurement ID
+   It looks like: G-AB12CD34EF
+
+5. ADD TO YOUR WEBSITE:
+   Open sabyroy-website/index.html in any text editor
+   Press Ctrl+F (or Cmd+F on Mac) and search for: G-XXXXXXXXXX
+   You will find it TWICE — replace BOTH with your real ID
+
+   Before: G-XXXXXXXXXX
+   After:  G-AB12CD34EF  (your actual ID)
+
+6. SAVE → GitHub Desktop → commit → push
+   Vercel deploys in 30 seconds
+
+7. VERIFY IT WORKS:
+   → Go to analytics.google.com
+   → Reports → Realtime
+   → Open sabyroy.com in another tab
+   → You should see "1 user" appear in Realtime
+
+✅ You now track every visitor, page, and subscription
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  HOW TO UPDATE YOUR WEBSITE GOING FORWARD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Every time you want to change something on the website:
+
+  1. Open content.js → make your changes
+  2. Save the file
+  3. Open GitHub Desktop
+     → You will see your changes listed
+  4. Write a short summary (e.g. "Updated testimonials")
+  5. Click "Commit to main"
+  6. Click "Push origin"
+  7. Wait 30 seconds
+  8. Open sabyroy.com → your changes are live ✅
+
+That is the full workflow. You will do this dozens of times.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  YOUR COMPLETE MONTHLY COSTS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+RIGHT NOW (just launched):
+  Domain (Namecheap)   £10/year  (~£1/month)
+  Hosting (Vercel)     FREE
+  GitHub               FREE
+  Kit (0-10k subs)     FREE
+  Google Analytics     FREE
+  ─────────────────────────────
+  TOTAL:               ~£1/month
+
+WHEN GROWING (1,000-10,000 subscribers):
+  Domain               £10/year
+  Hosting (Vercel)     FREE (hobby) or £15/mo (pro)
+  Kit (10k-25k subs)   £25/month
+  Calendly (bookings)  £8/month
+  ─────────────────────────────
+  TOTAL:               ~£33-48/month
+
+WHEN SCALING (courses, products live):
+  All above            ~£50/month
+  Teachable (courses)  £30-80/month
+  Stripe               1.5% + 20p per transaction
+  ─────────────────────────────
+  TOTAL:               ~£80-130/month (vs. thousands in revenue)
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  QUICK REFERENCE — IMPORTANT URLS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+  GitHub Desktop:       desktop.github.com
+  Your code (GitHub):   github.com/YOUR_USERNAME/sabyroy-website
+  Hosting (Vercel):     vercel.com/dashboard
+  Domain (Namecheap):   namecheap.com → Domain List
+  Email (Kit):          app.kit.com
+  Analytics (GA4):      analytics.google.com
+  Your website:         sabyroy.com (once domain is connected)
+
+════════════════════════════════════════════════════════════════
+  Saved and maintained by Claude Code — Dr. Saby Roy Platform
+════════════════════════════════════════════════════════════════
