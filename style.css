@@ -1871,3 +1871,28 @@ input:focus, select:focus, textarea:focus { outline: none; }
   .adm-panel { max-width: 100%; }
   .adm-status-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Study Zone filter pills ── */
+.sf-pill {
+  font-family: var(--body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+  background: transparent;
+  border: 1px solid var(--cream-2);
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+  transition: all 0.22s var(--ease);
+  border-radius: 100px;
+}
+.sf-pill:hover {
+  color: var(--ink);
+  border-color: var(--ink-20);
+}
+.sf-pill.active {
+  color: var(--white);
+  background: var(--forest-mid);
+  border-color: var(--forest-mid);
+}

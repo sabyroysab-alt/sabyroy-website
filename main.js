@@ -1035,16 +1035,6 @@ function initSubscriberLogin() {
    ADMIN PANEL  (footer ⚙ Admin button → full Business OS admin)
 ────────────────────────────────────────────────────────────── */
 function initAdminPanel() {
-  // Redirect straight to the full Business OS admin dashboard
-  const trigger = document.getElementById('adminTrigger');
-  if (trigger) {
-    trigger.addEventListener('click', e => {
-      e.preventDefault();
-      window.location.href = 'admin/login.html';
-    });
-  }
-}
-function initAdminPanel_UNUSED() {
   const trigger   = document.getElementById('adminTrigger');
   const adminWrap = document.getElementById('adminWrap');
   const adminClose= document.getElementById('adminClose');
@@ -1140,6 +1130,8 @@ function initAdminPanel_UNUSED() {
       const t = tab.dataset.tab;
       document.getElementById('admSubs').style.display   = t === 'subs'   ? 'block' : 'none';
       document.getElementById('admStatus').style.display = t === 'status' ? 'block' : 'none';
+      document.getElementById('admStudy').style.display  = t === 'study'  ? 'block' : 'none';
+      if (t === 'study') populateStudyTab();
     });
   });
 
@@ -1161,6 +1153,57 @@ function initAdminPanel_UNUSED() {
           <td>${escHtml(s.source||'—')}</td>
           <td>${new Date(s.date).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}</td>
         </tr>`).join('');
+    }
+    // Kit API fetch button
+    const paneHead = document.querySelector('#admSubs .adm-pane-head');
+    if (paneHead && !document.getElementById('admFetchKit')) {
+      const kitBtn = document.createElement('button');
+      kitBtn.id = 'admFetchKit';
+      kitBtn.className = 'adm-export';
+      kitBtn.style.marginLeft = '0.5rem';
+      kitBtn.textContent = 'Fetch from Kit';
+      paneHead.appendChild(kitBtn);
+      kitBtn.addEventListener('click', async () => {
+        let token = localStorage.getItem('sr_admin_token');
+        if (!token) {
+          token = prompt('Enter your Admin Token (stored locally for this session):');
+          if (!token) return;
+          localStorage.setItem('sr_admin_token', token);
+        }
+        try {
+          kitBtn.textContent = 'Fetching…';
+          kitBtn.disabled = true;
+          const res = await fetch('/api/subscribers', { headers: { 'X-Admin-Token': token } });
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const data = await res.json();
+          const kitSubs = Array.isArray(data) ? data : (data.subscribers || []);
+          // Merge: add Kit subs not already in local list (by email)
+          const localSubs = JSON.parse(localStorage.getItem('sr_subs') || '[]');
+          const localEmails = new Set(localSubs.map(s => s.email.toLowerCase()));
+          let added = 0;
+          kitSubs.forEach(ks => {
+            const email = (ks.email_address || ks.email || '').toLowerCase();
+            if (email && !localEmails.has(email)) {
+              localSubs.push({
+                email: ks.email_address || ks.email || '',
+                name:  ks.first_name ? `${ks.first_name} ${ks.last_name||''}`.trim() : (ks.name || ''),
+                source: 'Kit',
+                date:  ks.created_at || new Date().toISOString()
+              });
+              localEmails.add(email);
+              added++;
+            }
+          });
+          if (added > 0) localStorage.setItem('sr_subs', JSON.stringify(localSubs));
+          populateSubscribersTab();
+          showToast(`Fetched ${kitSubs.length} Kit subscribers. ${added} new added.`);
+        } catch(err) {
+          showToast('Failed to fetch Kit subscribers: ' + err.message);
+        } finally {
+          kitBtn.textContent = 'Fetch from Kit';
+          kitBtn.disabled = false;
+        }
+      });
     }
     const exportBtn = document.getElementById('admExport');
     if (exportBtn) exportBtn.onclick = () => {
@@ -1191,6 +1234,141 @@ function initAdminPanel_UNUSED() {
       {label:'Last Sign-up',   val:last,                  cls:'',              desc:'Most recent date.'},
     ].map(s=>`<div class="adm-status-card"><p class="asc-label">${s.label}</p><p class="asc-val ${s.cls}">${s.val}</p><p class="asc-desc">${s.desc}</p></div>`).join('');
   }
+
+  function getStudyItems() {
+    const override = localStorage.getItem('sr_study_override');
+    if (override) {
+      try { return JSON.parse(override); } catch(e) {}
+    }
+    // Fall back to CONTENT defaults
+    if (typeof CONTENT !== 'undefined' && CONTENT.study_zone && Array.isArray(CONTENT.study_zone.items)) {
+      return JSON.parse(JSON.stringify(CONTENT.study_zone.items));
+    }
+    return [];
+  }
+
+  function saveStudyItems(items) {
+    localStorage.setItem('sr_study_override', JSON.stringify(items));
+  }
+
+  function populateStudyTab() {
+    const el = document.getElementById('admStudy');
+    if (!el) return;
+    const items = getStudyItems();
+
+    el.innerHTML = `
+      <div style="padding:1rem 0 0.5rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:0.5rem;">
+        <p class="adm-pane-title">Study Zone Cards (${items.length})</p>
+        <button id="admStudyReset" class="adm-export" style="background:transparent;color:var(--gold);border:1px solid var(--gold);">Reset to defaults</button>
+      </div>
+      <div id="admStudyAddForm" style="border:1px solid var(--cream-2);padding:1rem;margin-bottom:1rem;background:var(--cream);">
+        <p style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.75rem;color:var(--ink-45);">Add New Card</p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;margin-bottom:0.5rem;">
+          <input id="szIcon"  class="adm-input" placeholder="Icon (emoji or text)" style="padding:0.4rem 0.6rem;border:1px solid var(--cream-2);background:var(--white);font-size:0.85rem;"/>
+          <input id="szCat"   class="adm-input" placeholder="Category" style="padding:0.4rem 0.6rem;border:1px solid var(--cream-2);background:var(--white);font-size:0.85rem;"/>
+          <input id="szTitle" class="adm-input" placeholder="Title" style="padding:0.4rem 0.6rem;border:1px solid var(--cream-2);background:var(--white);font-size:0.85rem;"/>
+          <input id="szLink"  class="adm-input" placeholder="Link (URL)" style="padding:0.4rem 0.6rem;border:1px solid var(--cream-2);background:var(--white);font-size:0.85rem;"/>
+        </div>
+        <input id="szDesc" class="adm-input" placeholder="Description" style="width:100%;padding:0.4rem 0.6rem;border:1px solid var(--cream-2);background:var(--white);font-size:0.85rem;margin-bottom:0.5rem;"/>
+        <button id="admStudyAdd" style="background:var(--forest);color:var(--white);padding:0.45rem 1.2rem;font-size:0.8rem;font-weight:600;border:none;cursor:pointer;">Add Card</button>
+      </div>
+      <div id="admStudyList"></div>
+    `;
+
+    renderStudyList(items);
+
+    document.getElementById('admStudyAdd').addEventListener('click', () => {
+      const icon  = document.getElementById('szIcon').value.trim();
+      const cat   = document.getElementById('szCat').value.trim();
+      const title = document.getElementById('szTitle').value.trim();
+      const desc  = document.getElementById('szDesc').value.trim();
+      const link  = document.getElementById('szLink').value.trim();
+      if (!title) { showToast('Title is required.'); return; }
+      const current = getStudyItems();
+      current.push({ icon: icon||'📚', category: cat||'General', title, desc, link });
+      saveStudyItems(current);
+      populateStudyTab();
+      showToast('Card added.');
+    });
+
+    document.getElementById('admStudyReset').addEventListener('click', () => {
+      if (!confirm('Reset Study Zone to default content? This will remove your customisations.')) return;
+      localStorage.removeItem('sr_study_override');
+      populateStudyTab();
+      showToast('Study Zone reset to defaults.');
+    });
+  }
+
+  function renderStudyList(items) {
+    const listEl = document.getElementById('admStudyList');
+    if (!listEl) return;
+    if (items.length === 0) {
+      listEl.innerHTML = '<p style="color:var(--ink-45);font-size:0.85rem;padding:0.5rem 0;">No cards yet. Add one above.</p>';
+      return;
+    }
+    listEl.innerHTML = items.map((item, i) => `
+      <div class="adm-study-row" id="szRow-${i}" style="display:flex;align-items:flex-start;gap:0.75rem;padding:0.75rem 0;border-bottom:1px solid var(--cream-2);">
+        <div style="flex:1;min-width:0;">
+          <p style="font-size:0.8rem;font-weight:600;margin-bottom:0.1rem;">${escHtml(item.icon||'')} ${escHtml(item.title||'')}</p>
+          <p style="font-size:0.72rem;color:var(--ink-45);">${escHtml(item.category||'')} — ${escHtml((item.desc||'').substring(0,80))}${(item.desc||'').length>80?'…':''}</p>
+        </div>
+        <div style="display:flex;gap:0.4rem;flex-shrink:0;">
+          <button onclick="admStudyEditCard(${i})" style="font-size:0.72rem;padding:0.3rem 0.7rem;background:transparent;border:1px solid var(--cream-2);cursor:pointer;">Edit</button>
+          <button onclick="admStudyDeleteCard(${i})" style="font-size:0.72rem;padding:0.3rem 0.7rem;background:transparent;border:1px solid #c0392b;color:#c0392b;cursor:pointer;">Delete</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Expose edit/delete as globals so inline onclick handlers work
+  window.admStudyEditCard = function(i) {
+    const items = getStudyItems();
+    const item  = items[i];
+    if (!item) return;
+    const row = document.getElementById(`szRow-${i}`);
+    if (!row) return;
+    row.innerHTML = `
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;">
+        <input id="szEditIcon-${i}"  value="${escHtml(item.icon||'')}"     placeholder="Icon"     style="padding:0.35rem 0.5rem;border:1px solid var(--cream-2);font-size:0.82rem;"/>
+        <input id="szEditCat-${i}"   value="${escHtml(item.category||'')}" placeholder="Category" style="padding:0.35rem 0.5rem;border:1px solid var(--cream-2);font-size:0.82rem;"/>
+        <input id="szEditTitle-${i}" value="${escHtml(item.title||'')}"    placeholder="Title"    style="padding:0.35rem 0.5rem;border:1px solid var(--cream-2);font-size:0.82rem;"/>
+        <input id="szEditLink-${i}"  value="${escHtml(item.link||'')}"     placeholder="Link"     style="padding:0.35rem 0.5rem;border:1px solid var(--cream-2);font-size:0.82rem;"/>
+        <input id="szEditDesc-${i}"  value="${escHtml(item.desc||'')}"     placeholder="Description" style="padding:0.35rem 0.5rem;border:1px solid var(--cream-2);font-size:0.82rem;grid-column:span 2;"/>
+      </div>
+      <div style="display:flex;gap:0.4rem;flex-shrink:0;margin-top:0.2rem;">
+        <button onclick="admStudySaveCard(${i})" style="font-size:0.72rem;padding:0.3rem 0.7rem;background:var(--forest);color:var(--white);border:none;cursor:pointer;">Save</button>
+        <button onclick="admStudyCancelEdit(${i})" style="font-size:0.72rem;padding:0.3rem 0.7rem;background:transparent;border:1px solid var(--cream-2);cursor:pointer;">Cancel</button>
+      </div>
+    `;
+  };
+
+  window.admStudySaveCard = function(i) {
+    const items = getStudyItems();
+    items[i] = {
+      icon:     document.getElementById(`szEditIcon-${i}`).value.trim(),
+      category: document.getElementById(`szEditCat-${i}`).value.trim(),
+      title:    document.getElementById(`szEditTitle-${i}`).value.trim(),
+      desc:     document.getElementById(`szEditDesc-${i}`).value.trim(),
+      link:     document.getElementById(`szEditLink-${i}`).value.trim(),
+    };
+    saveStudyItems(items);
+    populateStudyTab();
+    showToast('Card saved.');
+  };
+
+  window.admStudyCancelEdit = function(i) {
+    const items = getStudyItems();
+    renderStudyList(items);
+  };
+
+  window.admStudyDeleteCard = function(i) {
+    if (!confirm('Delete this card?')) return;
+    const items = getStudyItems();
+    items.splice(i, 1);
+    saveStudyItems(items);
+    populateStudyTab();
+    showToast('Card deleted.');
+  };
 }
 
 
