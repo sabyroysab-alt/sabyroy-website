@@ -4,6 +4,23 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Dr. Saby Roy — Doctor, Medical Educator & Coach. Build the life you designed, not the one you defaulted into."/>
+  <!-- Open Graph -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://sabyroy.com/"/>
+  <meta property="og:title" content="Dr. Saby Roy — Physician · Educator · Entrepreneur"/>
+  <meta property="og:description" content="Weekly clarity on health, education & purpose — for ambitious professionals who demand more from themselves."/>
+  <meta property="og:image" content="https://sabyroy.com/assets/og-image.jpg"/>
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:site" content="@thesabyme"/>
+  <meta name="twitter:title" content="Dr. Saby Roy — Physician · Educator · Entrepreneur"/>
+  <meta name="twitter:description" content="Weekly clarity on health, education & purpose — for ambitious professionals who demand more from themselves."/>
+  <meta name="twitter:image" content="https://sabyroy.com/assets/og-image.jpg"/>
+  <!-- Canonical -->
+  <link rel="canonical" href="https://sabyroy.com/"/>
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"/>
+  <link rel="alternate icon" href="/assets/favicon.ico"/>
   <title>Dr. Saby Roy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -378,14 +395,14 @@
       <div class="foot-bottom">
         <p class="foot-copy">&copy; <span id="footYear"></span> <span id="footName"></span>. All rights reserved.</p>
         <div class="foot-legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms</a>
-          <a href="#">Disclaimer</a>
+          <a href="/privacy">Privacy Policy</a>
+          <a href="/terms">Terms</a>
+          <a href="/terms#2">Disclaimer</a>
         </div>
       </div>
       <div class="foot-disclaimer-row">
         <p class="foot-disclaimer" id="footDisclaimer"></p>
-        <button class="foot-admin-btn" id="adminTrigger" title="Admin access">⚙ Admin</button>
+        <button class="foot-admin-btn" id="adminTrigger" title="" aria-hidden="true"></button>
       </div>
     </div>
   </footer>
@@ -409,6 +426,17 @@
   <div class="toast" id="toast" role="status" aria-live="polite">
     <div class="toast-dot"></div>
     <span id="toastMsg">You're subscribed. Check your inbox.</span>
+  </div>
+
+  <!-- ══════════════ COOKIE CONSENT ══════════════ -->
+  <div class="cookie-bar" id="cookieBar" role="dialog" aria-label="Cookie consent">
+    <div class="cookie-inner">
+      <p class="cookie-text">This site uses cookies to improve your experience and understand how visitors use it. <a href="/privacy" class="cookie-link">Privacy Policy</a></p>
+      <div class="cookie-btns">
+        <button class="cookie-decline" id="cookieDecline">Decline</button>
+        <button class="cookie-accept" id="cookieAccept">Accept</button>
+      </div>
+    </div>
   </div>
 
   <!-- ══════════════ SUBSCRIBER SIGN-IN PANEL ══════════════ -->
@@ -473,6 +501,7 @@
         <button class="adm-tab active" data-tab="subs">Subscribers</button>
         <button class="adm-tab" data-tab="status">Site Status</button>
         <button class="adm-tab" data-tab="study">Study Zone</button>
+        <button class="adm-tab" data-tab="config">Site Config</button>
       </div>
       <div class="adm-body">
         <div class="adm-pane" id="admSubs">
@@ -494,9 +523,32 @@
         <div class="adm-pane" id="admStudy" style="display:none">
           <!-- populated by JS -->
         </div>
+        <div class="adm-pane" id="admConfig" style="display:none">
+          <!-- populated by JS -->
+        </div>
       </div>
     </div>
   </div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Dr. Sabyasachi Roy",
+    "alternateName": "Dr. Saby Roy",
+    "url": "https://sabyroy.com",
+    "image": "https://sabyroy.com/assets/headshot.jpg",
+    "jobTitle": "Physician, Educator & Entrepreneur",
+    "description": "Doctor, Medical Educator, and Hormone Specialist helping high-achievers optimise their biology and design intentional lives.",
+    "sameAs": [
+      "https://x.com/thesabyme",
+      "https://www.linkedin.com/in/saby-roy-9231433ab/",
+      "https://www.instagram.com/sabyroyme/",
+      "https://www.youtube.com/@TheSabyMe",
+      "https://substack.com/@sabyroy"
+    ]
+  }
+  </script>
 
   <!-- Scripts: content first, then GSAP, then app -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>

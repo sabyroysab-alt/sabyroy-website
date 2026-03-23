@@ -45,7 +45,7 @@ exports.handler = async function (event) {
     };
   }
 
-  const { email, first_name = '', source = 'website', tag_id } = body;
+  const { email, first_name = '', source = 'website', tag_id, fields } = body;
 
   if (!email || !email.includes('@')) {
     return {
@@ -72,9 +72,8 @@ exports.handler = async function (event) {
   const kitUrl = `https://api.kit.com/v4/forms/${KIT_FORM_ID}/subscribers`;
 
   const subscriber = { email_address: email, first_name: first_name || '' };
-  if (tag_id) {
-    subscriber.tag_id = tag_id;
-  }
+  if (tag_id) subscriber.tag_id = tag_id;
+  if (fields && typeof fields === 'object') subscriber.fields = fields;
 
   let kitRes;
   try {

@@ -205,6 +205,19 @@ function renderAll() {
 
   // Browser title
   document.title = C.name;
+
+  // Apply any site config overrides from admin panel
+  const _siteCfg = JSON.parse(localStorage.getItem('sr_site_config') || '{}');
+  if (_siteCfg.programme_cta_url) {
+    const ctaEl = document.getElementById('progCta');
+    if (ctaEl) ctaEl.href = _siteCfg.programme_cta_url;
+    const navCta = document.getElementById('navCta');
+    if (navCta) navCta.href = _siteCfg.programme_cta_url;
+  }
+  if (_siteCfg.youtube_url) {
+    const ytEl = document.getElementById('ytLink');
+    if (ytEl) ytEl.href = _siteCfg.youtube_url;
+  }
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -667,7 +680,7 @@ function initSmoothScroll() {
  * Subscribe an email to Kit (ConvertKit) via the /api/subscribe serverless function.
  * Falls back to localStorage if the function is not available (local dev).
  */
-async function subscribeEmail({ email, firstName = '', source = 'website' }) {
+async function subscribeEmail({ email, firstName = '', source = 'website', interest = '' }) {
   const cfg = CONTENT.email_provider || {};
 
   // ── PRIMARY: POST to serverless function ──────────────────────────────
@@ -677,6 +690,7 @@ async function subscribeEmail({ email, firstName = '', source = 'website' }) {
       first_name: firstName,
       source,
     };
+    if (interest) payload.fields = { interest };
 
     // Attach tag if configured in content.js
     if (cfg.tag_id) {
@@ -781,7 +795,8 @@ function initForms() {
     btn.textContent = 'Sending...';
     btn.disabled = true;
 
-    const result = await subscribeEmail({ email, firstName: name, source: 'subscribe-section' });
+    const interest = e.target.querySelector('select')?.value || '';
+    const result = await subscribeEmail({ email, firstName: name, source: 'subscribe-section', interest });
 
     btn.textContent = orig;
     btn.disabled    = false;
@@ -1057,6 +1072,23 @@ function initAdminPanel() {
     openAdminLogin();
   });
 
+  // Triple-click on copyright text (hidden admin trigger per design spec)
+  let adminClicks = 0, adminTimer;
+  const footCopy = document.querySelector('.foot-copy');
+  if (footCopy) {
+    footCopy.addEventListener('click', e => {
+      if (e.shiftKey) {
+        localStorage.removeItem('sr_admin_pw_hash');
+        showToast('Admin password reset.');
+        return;
+      }
+      adminClicks++;
+      clearTimeout(adminTimer);
+      adminTimer = setTimeout(() => { adminClicks = 0; }, 1500);
+      if (adminClicks >= 3) { adminClicks = 0; openAdminLogin(); }
+    });
+  }
+
   function openAdminLogin() {
     const hasPw = !!localStorage.getItem('sr_admin_pw_hash');
     if (adminTitle)  adminTitle.textContent  = hasPw ? 'Enter password' : 'Set a password';
@@ -1132,6 +1164,8 @@ function initAdminPanel() {
       document.getElementById('admStatus').style.display = t === 'status' ? 'block' : 'none';
       document.getElementById('admStudy').style.display  = t === 'study'  ? 'block' : 'none';
       if (t === 'study') populateStudyTab();
+      document.getElementById('admConfig').style.display = t === 'config' ? 'block' : 'none';
+      if (t === 'config') populateConfigTab();
     });
   });
 
@@ -1369,6 +1403,58 @@ function initAdminPanel() {
     populateStudyTab();
     showToast('Card deleted.');
   };
+
+  function populateConfigTab() {
+    const el = document.getElementById('admConfig');
+    if (!el) return;
+    const cfg = JSON.parse(localStorage.getItem('sr_site_config') || '{}');
+    el.innerHTML = `
+      <div style="padding:1rem 0 0.5rem;">
+        <p class="adm-pane-title" style="margin-bottom:1.5rem;">Site Configuration</p>
+        <p style="font-size:0.75rem;color:var(--ink-45);margin-bottom:1.25rem;">These override values from content.js and are stored in your browser. Changes take effect on next page load.</p>
+        <div style="display:grid;gap:1rem;max-width:560px;">
+          ${[
+            { key:'programme_cta_url', label:'Programme CTA URL', placeholder:'https://calendly.com/sabyroy/consultation', type:'url' },
+            { key:'youtube_url',       label:'YouTube Channel URL', placeholder:'https://www.youtube.com/@TheSabyMe', type:'url' },
+            { key:'twitter_url',       label:'Twitter / X URL', placeholder:'https://x.com/thesabyme', type:'url' },
+            { key:'linkedin_url',      label:'LinkedIn URL', placeholder:'https://linkedin.com/in/...', type:'url' },
+            { key:'instagram_url',     label:'Instagram URL', placeholder:'https://instagram.com/sabyroyme', type:'url' },
+            { key:'substack_url',      label:'Substack URL', placeholder:'https://substack.com/@sabyroy', type:'url' },
+            { key:'threads_url',       label:'Threads URL', placeholder:'https://threads.com/@sabyroyme', type:'url' },
+            { key:'facebook_url',      label:'Facebook URL', placeholder:'https://facebook.com/...', type:'url' },
+          ].map(f => `
+            <div>
+              <label style="font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-45);display:block;margin-bottom:0.3rem;">${f.label}</label>
+              <input id="scf-${f.key}" type="${f.type}" value="${escHtml(cfg[f.key]||'')}" placeholder="${f.placeholder}"
+                style="width:100%;padding:0.5rem 0.75rem;border:1px solid var(--cream-2);background:var(--white);font-size:0.85rem;font-family:var(--body);" />
+            </div>
+          `).join('')}
+        </div>
+        <div style="margin-top:1.5rem;display:flex;gap:0.75rem;align-items:center;">
+          <button id="admConfigSave" style="background:var(--forest);color:var(--white);padding:0.55rem 1.5rem;font-size:0.82rem;font-weight:600;border:none;cursor:pointer;">Save Configuration</button>
+          <button id="admConfigReset" style="background:transparent;color:#c0392b;border:1px solid #c0392b;padding:0.5rem 1.2rem;font-size:0.8rem;cursor:pointer;">Reset to defaults</button>
+        </div>
+        <p id="admConfigMsg" style="font-size:0.78rem;color:var(--forest);margin-top:0.75rem;min-height:1.2em;"></p>
+      </div>
+    `;
+    document.getElementById('admConfigSave').addEventListener('click', () => {
+      const keys = ['programme_cta_url','youtube_url','twitter_url','linkedin_url','instagram_url','substack_url','threads_url','facebook_url'];
+      const out = {};
+      keys.forEach(k => {
+        const val = (document.getElementById(`scf-${k}`)?.value || '').trim();
+        if (val) out[k] = val;
+      });
+      localStorage.setItem('sr_site_config', JSON.stringify(out));
+      document.getElementById('admConfigMsg').textContent = '✓ Saved. Reload the page to see changes.';
+      showToast('Site config saved. Reload to apply.');
+    });
+    document.getElementById('admConfigReset').addEventListener('click', () => {
+      if (!confirm('Reset all site config overrides?')) return;
+      localStorage.removeItem('sr_site_config');
+      populateConfigTab();
+      showToast('Site config reset to defaults.');
+    });
+  }
 }
 
 
@@ -1407,6 +1493,35 @@ if (typeof gsap !== 'undefined' && !gsap.plugins.scrollTo) {
 
 
 /* ──────────────────────────────────────────────────────────────
+   COOKIE CONSENT
+────────────────────────────────────────────────────────────── */
+function initCookieConsent() {
+  const bar     = document.getElementById('cookieBar');
+  const accept  = document.getElementById('cookieAccept');
+  const decline = document.getElementById('cookieDecline');
+  if (!bar) return;
+
+  const consent = localStorage.getItem('sr_cookie_consent');
+  if (consent) return; // Already decided
+
+  // Show after a short delay
+  setTimeout(() => bar.classList.add('show'), 1500);
+
+  accept.addEventListener('click', () => {
+    localStorage.setItem('sr_cookie_consent', 'accepted');
+    bar.classList.remove('show');
+  });
+
+  decline.addEventListener('click', () => {
+    localStorage.setItem('sr_cookie_consent', 'declined');
+    bar.classList.remove('show');
+    // Disable GA4 if declined
+    window['ga-disable-G-XXXXXXXXXX'] = true;
+  });
+}
+
+
+/* ──────────────────────────────────────────────────────────────
    INIT — fire everything
 ────────────────────────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', () => {
@@ -1419,6 +1534,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initStudyGate();
   initSubscriberLogin();
   initAdminPanel();
+  initCookieConsent();
   initHeroVideo();
 
   // GSAP-dependent init
@@ -1435,6 +1551,19 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('preloader').style.display = 'none';
     document.querySelectorAll('.gsap-reveal').forEach(el => el.style.opacity = 1);
     document.querySelectorAll('.nav-logo, .nav-links').forEach(el => el.style.opacity = 1);
+    // Hero content fallback — make all hero elements visible
+    document.querySelectorAll('.hero-eyebrow, .hero-sub, .hero-field, .hero-note, .hero-btn-ghost').forEach(el => {
+      el.style.opacity = 1;
+      el.style.transform = 'none';
+    });
+    document.querySelectorAll('.hero-hed .line').forEach(el => {
+      el.style.transform = 'translateY(0)';
+    });
+    // Cinema section fallback
+    document.querySelectorAll('.cinema-eyebrow, .cinema-sub, .cl-inner, .cinema-scroll-hint').forEach(el => {
+      el.style.opacity = 1;
+      el.style.transform = 'none';
+    });
   }
 
   // Console signature
