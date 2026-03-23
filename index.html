@@ -108,31 +108,34 @@
   <!-- ══════════════ HERO ══════════════ -->
   <section class="hero" id="hero">
 
-    <!-- Video background -->
-    <div class="hero-video-wrap">
-      <video id="heroVideo" autoplay muted loop playsinline poster="https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1920&amp;time=3"></video>
-    </div>
-
-    <!-- Overlays -->
-    <div class="hero-overlay"></div>
-    <div class="hero-vignette"></div>
-    <div class="hero-fade"></div>
-
-    <!-- Content -->
-    <div class="hero-content">
+    <!-- Left: text content -->
+    <div class="hero-left">
+      <div class="hero-line"></div>
       <p class="hero-eyebrow" id="heroEyebrow"></p>
       <h1 class="hero-hed" id="heroHed"></h1>
       <p class="hero-sub" id="heroSub"></p>
       <div class="hero-ctas">
-        <form class="hero-form" id="heroForm" novalidate>
-          <div class="hero-field">
-            <input type="email" class="hero-input" id="heroEmail" placeholder="Your email address" required aria-label="Email address"/>
-            <button type="submit" class="hero-btn" id="heroCta"></button>
-          </div>
-          <p class="hero-note" id="heroNote"></p>
-        </form>
-        <a class="hero-btn-ghost" href="#programme">Explore the Programme →</a>
+        <div class="hero-cta-row">
+          <form class="hero-form" id="heroForm" novalidate>
+            <div class="hero-field">
+              <input type="email" class="hero-input" id="heroEmail" placeholder="Your email address" required aria-label="Email address"/>
+              <button type="submit" class="hero-btn" id="heroCta"></button>
+            </div>
+            <p class="hero-note" id="heroNote"></p>
+          </form>
+          <a class="hero-btn-ghost" href="#programme">Explore the Programme →</a>
+        </div>
       </div>
+      <div class="hero-stats">
+        <div><div class="hero-stat-num">15K+</div><div class="hero-stat-label">Newsletter Readers</div></div>
+        <div><div class="hero-stat-num">7</div><div class="hero-stat-label">Years Teaching</div></div>
+        <div><div class="hero-stat-num">98%</div><div class="hero-stat-label">Satisfaction Rate</div></div>
+      </div>
+    </div>
+
+    <!-- Right: video -->
+    <div class="hero-right">
+      <video id="heroVideo" autoplay muted loop playsinline poster="https://image.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g/thumbnail.jpg?width=1920&amp;time=3"></video>
     </div>
 
   </section>

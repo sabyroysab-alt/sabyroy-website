@@ -332,9 +332,18 @@ function initHeroVideo() {
 function initHeroAnimation() {
   const tl = gsap.timeline({ defaults: { ease: 'power4.out' } });
 
+  // Set initial states for new elements
+  gsap.set('.hero-eyebrow', { opacity: 0, y: 12 });
+  gsap.set('.hero-sub', { opacity: 0, y: 18 });
+  gsap.set('.hero-right', { opacity: 0, x: 60 });
+  gsap.set('.hero-stats', { opacity: 0, y: 20 });
+
   // Nav fade in
   tl.to('.nav-logo',  { opacity: 1, duration: 0.6 }, 0)
     .to('.nav-links', { opacity: 1, duration: 0.6 }, 0.1)
+
+  // Gold vertical line draws down
+    .to('.hero-line', { height: 160, duration: 1.2, ease: 'power2.out' }, 0)
 
   // Eyebrow
     .to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.7 }, 0.3)
@@ -342,16 +351,22 @@ function initHeroAnimation() {
   // Headline lines one by one
     .to('.hero-hed .line', {
       y: '0%',
-      duration: 1.1,
-      stagger: 0.1,
-      ease: 'power4.out',
+      duration: 0.9,
+      stagger: 0.12,
+      ease: 'power3.out',
     }, 0.4)
 
   // Subtext, form, ghost button, note
-    .to('.hero-sub',       { opacity: 1, y: 0, duration: 0.7 }, 0.9)
-    .to('.hero-field',     { opacity: 1, y: 0, duration: 0.6 }, 1.0)
-    .to('.hero-btn-ghost', { opacity: 1, duration: 0.5 },        1.05)
-    .to('.hero-note',      { opacity: 1, duration: 0.5 },        1.2);
+    .to('.hero-sub',       { opacity: 1, y: 0, duration: 0.7 }, 1.0)
+    .to('.hero-field',     { opacity: 1, y: 0, duration: 0.6 }, 1.15)
+    .to('.hero-btn-ghost', { opacity: 1, duration: 0.5 },        1.3)
+    .to('.hero-note',      { opacity: 1, duration: 0.5 },        1.4)
+
+  // Stats bar
+    .to('.hero-stats', { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 1.3)
+
+  // Video panel slides in from right
+    .to('.hero-right', { opacity: 1, x: 0, duration: 1.3, ease: 'power3.out' }, 0.5);
 }
 
 /* ──────────────────────────────────────────────────────────────
@@ -1568,13 +1583,15 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.gsap-reveal').forEach(el => el.style.opacity = 1);
     document.querySelectorAll('.nav-logo, .nav-links').forEach(el => el.style.opacity = 1);
     // Hero content fallback — make all hero elements visible
-    document.querySelectorAll('.hero-eyebrow, .hero-sub, .hero-field, .hero-note, .hero-btn-ghost').forEach(el => {
+    document.querySelectorAll('.hero-eyebrow, .hero-sub, .hero-field, .hero-note, .hero-btn-ghost, .hero-right, .hero-stats').forEach(el => {
       el.style.opacity = 1;
       el.style.transform = 'none';
     });
     document.querySelectorAll('.hero-hed .line').forEach(el => {
       el.style.transform = 'translateY(0)';
     });
+    const heroLine = document.querySelector('.hero-line');
+    if (heroLine) heroLine.style.height = '160px';
     // Cinema section fallback
     document.querySelectorAll('.cinema-eyebrow, .cinema-sub, .cl-inner, .cinema-scroll-hint').forEach(el => {
       el.style.opacity = 1;
