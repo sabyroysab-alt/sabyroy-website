@@ -302,43 +302,26 @@ function initHeroVideo() {
 
   const playbackId = 'Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g';
   const hlsSrc = `https://stream.mux.com/${playbackId}.m3u8`;
-  const mp4Src = `https://stream.mux.com/${playbackId}/high.mp4`;
-
-  // Fallback: if video hasn't started after 4s, switch to direct MP4
-  let started = false;
-  function onPlaying() { started = true; }
-  video.addEventListener('playing', onPlaying, { once: true });
-
-  function fallbackToMp4() {
-    if (started) return;
-    console.log('[hero-video] HLS not playing, falling back to MP4');
-    video.removeEventListener('playing', onPlaying);
-    video.src = mp4Src;
-    video.load();
-    video.play().catch(() => {});
-  }
 
   if (typeof Hls !== 'undefined' && Hls.isSupported()) {
     const hls = new Hls();
     hls.on(Hls.Events.ERROR, function(_, data) {
-      if (data.fatal) fallbackToMp4();
+      if (data.fatal) {
+        console.warn('[hero-video] Fatal HLS error:', data.details);
+        hls.destroy();
+      }
     });
     hls.loadSource(hlsSrc);
     hls.attachMedia(video);
     hls.on(Hls.Events.MANIFEST_PARSED, function() {
       video.play().catch(() => {});
     });
-    // Safety timeout — if HLS hasn't started playing in 4s, use MP4
-    setTimeout(fallbackToMp4, 4000);
   } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
     // Safari native HLS
     video.src = hlsSrc;
-    video.play().catch(() => {});
-    setTimeout(fallbackToMp4, 4000);
-  } else {
-    // No HLS support at all — direct MP4
-    video.src = mp4Src;
-    video.play().catch(() => {});
+    video.addEventListener('loadedmetadata', () => {
+      video.play().catch(() => {});
+    });
   }
 }
 
