@@ -639,31 +639,34 @@ function initScrollBar() {
    NAVIGATION
 ────────────────────────────────────────────────────────────── */
 function initNav() {
-  const nav    = document.getElementById('nav');
-  const ham    = document.getElementById('navHam');
-  const mobile = document.getElementById('navMobile');
-  const links  = document.querySelectorAll('.nm-link');
+  const nav = document.getElementById('nav');
+  if (!nav) return;
 
+  // Scroll: add 'filled' class for background change
   window.addEventListener('scroll', () => {
     nav.classList.toggle('filled', window.scrollY > 30);
   }, { passive: true });
 
-  ham.addEventListener('click', () => {
-    const open = mobile.classList.toggle('open');
-    ham.classList.toggle('open', open);
-  });
-
-  links.forEach(l => l.addEventListener('click', () => {
-    mobile.classList.remove('open');
-    ham.classList.remove('open');
-  }));
-
-  document.addEventListener('click', e => {
-    if (!nav.contains(e.target)) {
+  // Mobile hamburger (if present)
+  const ham    = document.getElementById('navHam');
+  const mobile = document.getElementById('navMobile');
+  if (ham && mobile) {
+    const links = document.querySelectorAll('.nm-link');
+    ham.addEventListener('click', () => {
+      const open = mobile.classList.toggle('open');
+      ham.classList.toggle('open', open);
+    });
+    links.forEach(l => l.addEventListener('click', () => {
       mobile.classList.remove('open');
       ham.classList.remove('open');
-    }
-  });
+    }));
+    document.addEventListener('click', e => {
+      if (!nav.contains(e.target)) {
+        mobile.classList.remove('open');
+        ham.classList.remove('open');
+      }
+    });
+  }
 }
 
 
