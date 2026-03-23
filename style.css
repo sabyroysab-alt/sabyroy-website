@@ -1820,18 +1820,54 @@ input:focus, select:focus, textarea:focus { outline: none; }
   .nav-ham   { display: flex; }
 
   .hero { min-height: auto; grid-template-columns: 1fr; }
-  .hero-left { padding: 110px 2rem 2rem; }
-  .hero-right { height: 50vh; }
+  .hero-left { padding: 100px 1.5rem 2rem; }
+  .hero-line { left: 1.5rem; top: 95px; }
+  .hero-eyebrow {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    padding-left: 20px;
+    margin-bottom: 1.2rem;
+  }
+  .hero-hed {
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+    margin-bottom: 1.2rem;
+  }
+  .hero-sub {
+    font-size: 0.92rem;
+    margin-bottom: 2rem;
+  }
+  .hero-field {
+    flex-direction: row;
+  }
+  .hero-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+  .hero-btn-ghost {
+    text-align: center;
+    margin-top: 0;
+    font-size: 0.82rem;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid rgba(27,67,50,0.12);
+    border-radius: 100px;
+    border-bottom: 1px solid rgba(27,67,50,0.12);
+  }
+  .hero-stats {
+    gap: 0;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1.2rem;
+  }
+  .hero-stat-num { font-size: 1.4rem; }
+  .hero-stat-label { font-size: 0.6rem; letter-spacing: 0.03em; }
+  .hero-right { height: 45vh; }
   .hero-right::before { display: none; }
   .hero-right::after {
     background:
       linear-gradient(to bottom, #FAFAF7 0%, transparent 12%),
       linear-gradient(to top, #FAFAF7 0%, transparent 12%);
   }
-  .hero-stats { gap: 1.5rem; }
-  .hero-stat-num { font-size: 1.5rem; }
-  .hero-cta-row { flex-direction: column; align-items: stretch; }
-  .hero-btn-ghost { text-align: center; margin-top: 0; }
   .d-only { display: none; }
 
   .stats-bar { flex-wrap: wrap; gap: 0; }
@@ -1869,8 +1905,17 @@ input:focus, select:focus, textarea:focus { outline: none; }
 @media (max-width: 580px) {
   :root { --sv: clamp(4rem, 8vw, 6rem); }
 
+  .hero-left { padding: 90px 1.2rem 1.5rem; }
+  .hero-line { left: 1.2rem; top: 85px; }
+  .hero-eyebrow { font-size: 0.5rem; letter-spacing: 0.15em; padding-left: 18px; margin-bottom: 1rem; }
+  .hero-hed { font-size: 2.2rem; line-height: 1.1; margin-bottom: 1rem; }
+  .hero-sub { font-size: 0.85rem; margin-bottom: 1.5rem; }
   .hero-ctas { flex-direction: column; }
   .hero-btn-ghost { width: 100%; text-align: center; }
+  .hero-stats { gap: 0; }
+  .hero-stat-num { font-size: 1.2rem; }
+  .hero-stat-label { font-size: 0.55rem; }
+  .hero-right { height: 35vh; }
 
   .stats-bar { flex-direction: column; }
   .stat-item { width: 100%; }
