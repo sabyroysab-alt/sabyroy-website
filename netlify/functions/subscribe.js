@@ -69,9 +69,9 @@ exports.handler = async function (event) {
   }
 
   // ── Call Kit API v4 ────────────────────────────────────────────────────
-  const kitUrl = `https://api.kit.com/v4/forms/${KIT_FORM_ID}/subscribers`;
+  // Use /v4/subscribers directly (form-specific endpoint returns 404 for embed forms)
+  const kitUrl = 'https://api.kit.com/v4/subscribers';
 
-  // Kit API v4 form endpoint expects email_address at the top level
   const payload = { email_address: email };
   if (first_name) payload.first_name = first_name;
   if (fields && typeof fields === 'object') payload.fields = fields;
@@ -106,6 +106,25 @@ exports.handler = async function (event) {
         error: errBody.message || errBody.errors?.[0] || 'Subscription failed',
       }),
     };
+  }
+
+  // ── Tag the subscriber ─────────────────────────────────────────────────
+  // Tag with KIT_FORM_ID (used as tag ID) or a source-based tag
+  if (KIT_FORM_ID) {
+    const subData = await kitRes.json().catch(() => ({}));
+    const subId = subData?.subscriber?.id;
+    if (subId) {
+      try {
+        await fetch(`https://api.kit.com/v4/tags/${KIT_FORM_ID}/subscribers`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Kit-Api-Key': KIT_API_KEY,
+          },
+          body: JSON.stringify({ subscriber_id: subId }),
+        });
+      } catch {}
+    }
   }
 
   // ── Success ────────────────────────────────────────────────────────────
