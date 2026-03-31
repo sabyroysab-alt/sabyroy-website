@@ -71,9 +71,10 @@ exports.handler = async function (event) {
   // ── Call Kit API v4 ────────────────────────────────────────────────────
   const kitUrl = `https://api.kit.com/v4/forms/${KIT_FORM_ID}/subscribers`;
 
-  const subscriber = { email_address: email, first_name: first_name || '' };
-  if (tag_id) subscriber.tag_id = tag_id;
-  if (fields && typeof fields === 'object') subscriber.fields = fields;
+  // Kit API v4 form endpoint expects email_address at the top level
+  const payload = { email_address: email };
+  if (first_name) payload.first_name = first_name;
+  if (fields && typeof fields === 'object') payload.fields = fields;
 
   let kitRes;
   try {
@@ -83,7 +84,7 @@ exports.handler = async function (event) {
         'Content-Type': 'application/json',
         'X-Kit-Api-Key': KIT_API_KEY,
       },
-      body: JSON.stringify({ subscriber }),
+      body: JSON.stringify(payload),
     });
   } catch (networkErr) {
     console.error('[subscribe] Network error calling Kit API:', networkErr);
