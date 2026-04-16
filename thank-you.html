@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Free Guide Is Ready | Dr. Saby Roy</title>
+  <meta name="description" content="Download your free copy of The Visceral Fat Truth."/>
+  <meta name="robots" content="noindex, nofollow"/>
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --cream:#F7F4EF;--cream-2:#EDE7DC;--ink:#0C0C0A;--ink-70:#3D3D35;--ink-45:#7A7A6E;--ink-20:#BDBDB0;
+      --forest:#1B4332;--forest-mid:#2D6A4F;--gold:#9B7D44;--gold-lite:#C9A86A;--white:#FFFFFF;
+      --display:'Cormorant Garamond',Georgia,serif;--body:'Inter',-apple-system,sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--body); background: var(--cream); color: var(--ink);
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+      min-height: 100vh; display: flex; flex-direction: column;
+    }
+
+    /* ── TOPBAR ── */
+    .topbar { padding: 1.25rem 2rem; text-align: center; }
+    .topbar a { font-family: var(--display); font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+
+    /* ── MAIN CONTENT ── */
+    .ty-main {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      padding: 3rem 1.5rem;
+    }
+    .ty-container {
+      max-width: 560px; width: 100%; text-align: center;
+    }
+
+    /* ── SUCCESS ICON ── */
+    .ty-icon {
+      width: 64px; height: 64px; margin: 0 auto 2rem;
+      border-radius: 50%; background: var(--forest);
+      display: flex; align-items: center; justify-content: center;
+      animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .ty-icon svg { width: 28px; height: 28px; }
+    @keyframes scaleIn {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    /* ── HEADING ── */
+    .ty-heading {
+      font-family: var(--display);
+      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
+      font-weight: 400; line-height: 1.2;
+      margin-bottom: 1rem;
+      animation: fadeUp 0.6s ease both 0.15s;
+    }
+    .ty-heading em { font-style: italic; color: var(--forest); }
+    .ty-sub {
+      font-size: 1rem; color: var(--ink-70); line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.6s ease both 0.3s;
+    }
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(16px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── DOWNLOAD CARD ── */
+    .ty-card {
+      background: var(--white); border: 1px solid var(--cream-2);
+      padding: 2.5rem 2rem; box-shadow: 0 12px 40px rgba(0,0,0,0.05);
+      animation: fadeUp 0.6s ease both 0.45s;
+    }
+    .ty-card-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--ink-45);
+      margin-bottom: 0.75rem;
+    }
+    .ty-card-title {
+      font-family: var(--display); font-size: 1.35rem;
+      font-weight: 400; color: var(--ink); margin-bottom: 0.4rem;
+    }
+    .ty-card-meta {
+      font-size: 0.75rem; color: var(--ink-20); margin-bottom: 1.75rem;
+    }
+
+    /* ── DOWNLOAD BUTTON ── */
+    .ty-download {
+      display: inline-flex; align-items: center; gap: 0.65rem;
+      font-family: var(--body); font-size: 0.92rem; font-weight: 600;
+      color: #E8D5A3; background: var(--forest);
+      border: 1.5px solid rgba(212,175,55,0.25); padding: 1.1rem 2.25rem; cursor: pointer;
+      text-decoration: none; transition: background 0.25s, transform 0.2s, border-color 0.2s;
+      color: #E8D5A3;
+    }
+    .ty-download:hover { background: var(--forest-mid); transform: translateY(-1px); border-color: rgba(212,175,55,0.4); }
+    .ty-download svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ── NEXT STEPS ── */
+    .ty-next {
+      margin-top: 2.5rem;
+      animation: fadeUp 0.6s ease both 0.6s;
+    }
+    .ty-next-label {
+      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--ink-45);
+      margin-bottom: 1.25rem;
+    }
+    .ty-steps {
+      display: flex; flex-direction: column; gap: 0;
+      text-align: left; max-width: 400px; margin: 0 auto;
+    }
+    .ty-step {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid rgba(0,0,0,0.04);
+    }
+    .ty-step:last-child { border-bottom: none; }
+    .ty-step-num {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: rgba(27,67,50,0.08); color: var(--forest);
+      font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ty-step-text {
+      font-size: 0.88rem; color: var(--ink-70); line-height: 1.5;
+      padding-top: 0.15rem;
+    }
+
+    /* ── PROGRAMME CTA ── */
+    .ty-cta {
+      margin-top: 2.5rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(0,0,0,0.05);
+      animation: fadeUp 0.6s ease both 0.75s;
+    }
+    .ty-cta p {
+      font-size: 0.85rem; color: var(--ink-45); margin-bottom: 0.75rem;
+    }
+    .ty-cta a {
+      font-size: 0.85rem; font-weight: 600; color: var(--forest);
+      text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.2);
+      padding-bottom: 0.1rem; transition: border-color 0.25s;
+    }
+    .ty-cta a:hover { border-color: var(--forest); }
+
+    /* ── FOOTER ── */
+    .foot {
+      padding: 2rem 1.5rem; text-align: center;
+      font-size: 0.65rem; color: var(--ink-20);
+    }
+    .foot a { color: var(--ink-45); text-decoration: none; }
+
+    @media (max-width: 480px) {
+      .ty-card { padding: 2rem 1.25rem; }
+      .ty-download { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar"><a href="/">Dr. Saby Roy</a></div>
+
+  <main class="ty-main">
+    <div class="ty-container">
+
+      <!-- Success icon -->
+      <div class="ty-icon">
+        <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+
+      <h1 class="ty-heading">You're in. <em>Here's your guide.</em></h1>
+      <p class="ty-sub">Your copy of The Visceral Fat Truth is ready to download. We've also sent a copy to your inbox.</p>
+
+      <!-- Download card -->
+      <div class="ty-card">
+        <p class="ty-card-label">Free PDF Blueprint</p>
+        <h2 class="ty-card-title">The Visceral Fat Truth</h2>
+        <p class="ty-card-meta">PDF &middot; Evidence-based</p>
+        <a href="/assets/the-visceral-fat-truth.pdf" download class="ty-download">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          Download your free guide
+        </a>
+      </div>
+
+      <!-- Next steps -->
+      <div class="ty-next">
+        <p class="ty-next-label">What to do next</p>
+        <div class="ty-steps">
+          <div class="ty-step">
+            <div class="ty-step-num">1</div>
+            <p class="ty-step-text">Read it today — it takes less than 5 minutes</p>
+          </div>
+          <div class="ty-step">
+            <div class="ty-step-num">2</div>
+            <p class="ty-step-text">Try it for 3 days and notice the difference</p>
+          </div>
+          <div class="ty-step">
+            <div class="ty-step-num">3</div>
+            <p class="ty-step-text">Check your inbox for weekly insights from Dr. Saby</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Programme CTA -->
+      <div class="ty-cta">
+        <p>Want guided support with the full programme?</p>
+        <a href="/reset">Learn about the 6-Week Reset &rarr;</a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="foot">&copy; <span id="footYear"></span> Dr. Saby Roy. All rights reserved. &middot; <a href="/privacy">Privacy Policy</a></footer>
+
+  <script>document.getElementById('footYear').textContent = new Date().getFullYear();</script>
+</body>
+</html>

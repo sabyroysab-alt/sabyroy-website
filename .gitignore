@@ -30,3 +30,6 @@ preview-hero.html
 *.command
 *.sh
 *.bat
+
+# Local Netlify folder
+.netlify

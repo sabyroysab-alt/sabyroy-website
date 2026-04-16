@@ -58,6 +58,7 @@ exports.handler = async function (event) {
   // ── Kit credentials from environment ──────────────────────────────────
   const KIT_API_KEY = process.env.KIT_API_KEY;
   const KIT_FORM_ID = process.env.KIT_FORM_ID;
+  const KIT_TAG_ID = process.env.KIT_TAG_ID;
 
   if (!KIT_API_KEY || !KIT_FORM_ID) {
     console.error('[subscribe] Missing KIT_API_KEY or KIT_FORM_ID env vars');
@@ -68,26 +69,21 @@ exports.handler = async function (event) {
     };
   }
 
-  // ── Call Kit API v4 ────────────────────────────────────────────────────
-  // Use /v4/subscribers directly (form-specific endpoint returns 404 for embed forms)
-  const kitUrl = 'https://api.kit.com/v4/subscribers';
-
-  const payload = { email_address: email };
-  if (first_name) payload.first_name = first_name;
-  if (fields && typeof fields === 'object') payload.fields = fields;
+  // ── Subscribe via Kit form (triggers incentive email) ───────────────
+  const formData = new URLSearchParams();
+  formData.append('email_address', email);
+  if (first_name) formData.append('first_name', first_name);
 
   let kitRes;
   try {
-    kitRes = await fetch(kitUrl, {
+    kitRes = await fetch(`https://app.kit.com/forms/${KIT_FORM_ID}/subscriptions`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-Kit-Api-Key': KIT_API_KEY,
-      },
-      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: formData.toString(),
+      redirect: 'manual',
     });
   } catch (networkErr) {
-    console.error('[subscribe] Network error calling Kit API:', networkErr);
+    console.error('[subscribe] Network error calling Kit:', networkErr);
     return {
       statusCode: 502,
       headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
@@ -95,27 +91,26 @@ exports.handler = async function (event) {
     };
   }
 
-  if (!kitRes.ok) {
-    let errBody = {};
-    try { errBody = await kitRes.json(); } catch {}
-    console.error('[subscribe] Kit API error:', kitRes.status, errBody);
+  // Kit returns 302 on success (redirect to success page)
+  if (kitRes.status !== 302 && kitRes.status !== 200) {
+    console.error('[subscribe] Kit form error:', kitRes.status);
     return {
-      statusCode: kitRes.status,
+      statusCode: 500,
       headers: { ...CORS_HEADERS, 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        error: errBody.message || errBody.errors?.[0] || 'Subscription failed',
-      }),
+      body: JSON.stringify({ error: 'Subscription failed. Please try again.' }),
     };
   }
 
-  // ── Tag the subscriber ─────────────────────────────────────────────────
-  // Tag with KIT_FORM_ID (used as tag ID) or a source-based tag
-  if (KIT_FORM_ID) {
-    const subData = await kitRes.json().catch(() => ({}));
-    const subId = subData?.subscriber?.id;
-    if (subId) {
-      try {
-        await fetch(`https://api.kit.com/v4/tags/${KIT_FORM_ID}/subscribers`, {
+  // ── Tag the subscriber via v4 API ──────────────────────────────────────
+  if (KIT_TAG_ID) {
+    try {
+      const subRes = await fetch(`https://api.kit.com/v4/subscribers?email_address=${encodeURIComponent(email)}`, {
+        headers: { 'X-Kit-Api-Key': KIT_API_KEY },
+      });
+      const subData = await subRes.json().catch(() => ({}));
+      const subId = subData?.subscribers?.[0]?.id;
+      if (subId) {
+        await fetch(`https://api.kit.com/v4/tags/${KIT_TAG_ID}/subscribers`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -123,8 +118,8 @@ exports.handler = async function (event) {
           },
           body: JSON.stringify({ subscriber_id: subId }),
         });
-      } catch {}
-    }
+      }
+    } catch {}
   }
 
   // ── Success ────────────────────────────────────────────────────────────

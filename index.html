@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Dr. Saby Roy — Doctor, Medical Educator & Coach. Build the life you designed, not the one you defaulted into."/>
+  <meta name="description" content="Dr. Saby Roy — Physician, Medical Educator, Body & Mind Coach. Build the life you designed, not the one you defaulted into."/>
   <!-- Open Graph -->
   <meta property="og:type" content="website"/>
   <meta property="og:url" content="https://sabyroy.com/"/>
@@ -24,7 +24,7 @@
   <title>Dr. Saby Roy</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=block" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&family=Italiana&display=block" rel="stylesheet"/>
   <!-- Critical: set background before style.css loads -->
   <style>html,body{background:#FAFAF7}</style>
   <link rel="stylesheet" href="style.css"/>
@@ -81,14 +81,11 @@
   <!-- ══════════════ NAV ══════════════ -->
   <nav class="nav" id="nav">
     <div class="nav-inner">
-      <a class="nav-logo" href="#hero" id="navLogo">Dr. Saby Roy</a>
+      <a class="nav-logo" href="#hero" id="navLogo" aria-label="Dr. Saby Roy">SR</a>
       <div class="nav-links" id="navLinks">
         <a class="nav-link" href="#about">About</a>
-        <a class="nav-link" href="#programme">Programme</a>
         <a class="nav-link" href="#resources">Resources</a>
-        <a class="nav-link" href="#study">Study Zone</a>
-        <a class="nav-link" href="#subscribe">Newsletter</a>
-        <a class="nav-cta" href="#programme" id="navCta">Work With Me</a>
+        <a class="nav-cta" href="/reset" id="navCta">Join the Metabolic Reset Masterclass</a>
       </div>
     </div>
   </nav>
@@ -106,32 +103,33 @@
 
     <!-- Content -->
     <div class="hero-content">
+      <p class="hero-name">Dr. Saby Roy</p>
       <p class="hero-eyebrow" id="heroEyebrow"></p>
       <h1 class="hero-hed" id="heroHed"></h1>
       <p class="hero-sub" id="heroSub"></p>
       <form class="hero-form" id="heroForm" novalidate>
         <div class="hero-field">
+          <input type="text" class="hero-input" id="heroName" placeholder="Your name" required aria-label="Your name"/>
           <input type="email" class="hero-input" id="heroEmail" placeholder="Your email address" required aria-label="Email address"/>
           <button type="submit" class="hero-btn" id="heroCta"></button>
         </div>
         <p class="hero-note" id="heroNote"></p>
       </form>
       <div class="hero-stats">
-        <div><div class="hero-stat-num">15K+</div><div class="hero-stat-label">Community</div></div>
-        <div><div class="hero-stat-num">7</div><div class="hero-stat-label">Years Teaching</div></div>
-        <div><div class="hero-stat-num">98%</div><div class="hero-stat-label">Satisfaction</div></div>
+        <div><div class="hero-stat-num">10+</div><div class="hero-stat-label">Years in Medicine</div></div>
+        <div><div class="hero-stat-num">8+</div><div class="hero-stat-label">Years in Education</div></div>
+        <div><div class="hero-stat-num">5</div><div class="hero-stat-label">Countries & Counting</div></div>
       </div>
     </div>
 
   </section>
 
-  <!-- ══════════════ MARQUEE — divider line only ══════════════ -->
-  <div class="marquee" aria-hidden="true"></div>
+  <!-- marquee removed — cinema merges seamlessly with hero -->
 
   <!-- ══════════════ CINEMATIC STATEMENT ══════════════ -->
   <section class="cinema" id="cinema">
     <div class="cinema-img-wrap">
-      <img class="cinema-img" src="assets/cinema-bg.jpg" alt="The Transformation"/>
+      <img class="cinema-img" src="assets/netral walkinggvdn8qgvdn8qgv.png" alt="The Transformation"/>
     </div>
     <div class="cinema-content">
       <p class="cinema-eyebrow">The Transformation</p>
@@ -154,9 +152,35 @@
     </div>
   </section>
 
-  <!-- ══════════════ STATS BAR ══════════════ -->
-  <div class="stats-bar" id="statsBar">
-    <!-- Rendered by JS from content.js -->
+  <!-- ══════════════ QUALIFICATIONS TICKER ══════════════ -->
+  <div class="qual-ticker" id="statsBar" aria-label="Qualifications">
+    <div class="qual-track">
+      <span class="qual-item">MBBS</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">MRCP</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">SCE Endocrine &amp; Diabetes</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">Medical Educator</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">Metabolic Health Educator</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">Body &amp; Mind Coach</span>
+      <span class="qual-dot"></span>
+      <!-- duplicate for seamless loop -->
+      <span class="qual-item">MBBS</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">MRCP</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">SCE Endocrine &amp; Diabetes</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">Medical Educator</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">Metabolic Health Educator</span>
+      <span class="qual-dot"></span>
+      <span class="qual-item">Body &amp; Mind Coach</span>
+      <span class="qual-dot"></span>
+    </div>
   </div>
 
   <!-- ══════════════ ABOUT ══════════════ -->
@@ -207,22 +231,16 @@
   <section class="resources" id="resources">
     <div class="container">
 
-      <div class="res-header">
-        <p class="section-label">Free Resources</p>
-        <h2 class="res-hed">Ideas that don't<br/>ask anything of you.</h2>
-        <p class="res-sub">Everything here is free. Because the right knowledge at the right time<br class="d-only"/>can change the trajectory of a life.</p>
-      </div>
-
       <!-- Newsletter card -->
       <div class="nl-row">
         <div class="nl-left">
           <p class="nl-tag" id="nlTag"></p>
           <h3 class="nl-title" id="nlTitle"></h3>
           <p class="nl-desc" id="nlDesc"></p>
-          <a class="nl-link" href="#subscribe">Subscribe — Free</a>
+          <a class="nl-link" href="https://sabyroy.substack.com/" target="_blank" rel="noopener">Subscribe — Free</a>
         </div>
         <div class="nl-right">
-          <div class="nl-card">
+          <a class="nl-card" id="nlcLink" href="https://sabyroy.substack.com/" target="_blank" rel="noopener" style="text-decoration:none; color:inherit; display:block">
             <div class="nlc-top">
               <span class="nlc-label">Latest Issue</span>
               <span class="nlc-sep">·</span>
@@ -233,20 +251,10 @@
             <div class="nlc-foot">
               <span>5 min read</span>
               <span>·</span>
-              <span>Evidence-based</span>
+              <span id="nlcDate">Evidence-based</span>
             </div>
-          </div>
+          </a>
         </div>
-      </div>
-
-      <!-- Videos -->
-      <div class="vids-section">
-        <div class="vids-head">
-          <h3 class="vids-title">Video Library</h3>
-          <a class="vids-yt" href="#" id="ytLink" target="_blank" rel="noopener">YouTube Channel →</a>
-        </div>
-        <div class="vids-grid" id="vidsGrid"></div>
-        <p class="vids-note">Videos launching soon. <a href="#subscribe">Subscribe to be notified.</a></p>
       </div>
 
       <!-- Pillars -->
@@ -301,44 +309,6 @@
     </div>
   </section>
 
-  <!-- ══════════════ SUBSCRIBE ══════════════ -->
-  <section class="subscribe" id="subscribe">
-    <div class="sub-inner">
-      <div class="sub-left">
-        <p class="section-label light" id="subLabel"></p>
-        <h2 class="sub-hed" id="subHed"></h2>
-        <p class="sub-desc" id="subDesc"></p>
-        <div class="sub-gifts" id="subGifts"></div>
-      </div>
-      <div class="sub-right">
-        <form class="sub-form" id="subForm" novalidate>
-          <h3 class="sub-form-title" id="subFormTitle"></h3>
-          <div class="sub-field">
-            <label class="sub-label">First name</label>
-            <input type="text" class="sub-input" placeholder="Your first name"/>
-          </div>
-          <div class="sub-field">
-            <label class="sub-label">Email address</label>
-            <input type="email" class="sub-input" placeholder="your@email.com" required/>
-          </div>
-          <div class="sub-field">
-            <label class="sub-label">What brings you here?</label>
-            <select class="sub-input sub-select">
-              <option value="" disabled selected>Select one</option>
-              <option>Health &amp; Energy</option>
-              <option>Medical Education</option>
-              <option>Personal Development</option>
-              <option>AI &amp; Technology</option>
-              <option>Building a Personal Brand</option>
-            </select>
-          </div>
-          <button type="submit" class="sub-btn" id="subBtn"></button>
-          <p class="sub-note" id="subNote"></p>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <!-- ══════════════ TESTIMONIALS ══════════════ -->
   <section class="testis" id="testimonials">
     <div class="container">
@@ -347,9 +317,25 @@
     </div>
   </section>
 
+  <!-- ══════════════ FREE RESOURCES ══════════════ -->
+  <section class="free-resources" id="freeResources">
+    <div class="free-resources-inner">
+      <p class="modal-label">Free Resources</p>
+      <h3 class="modal-title">The blueprint behind the<br/>6-Week Reset — yours free.</h3>
+      <div class="modal-gifts" id="modalGifts"></div>
+      <form class="modal-form" id="modalForm" novalidate>
+        <input type="text" class="modal-input" name="first_name" placeholder="Your first name"/>
+        <input type="email" class="modal-input" placeholder="Your email address" required/>
+        <button type="submit" class="modal-btn">Send me the guide →</button>
+      </form>
+      <p class="modal-note">No spam. One click to unsubscribe.</p>
+    </div>
+  </section>
+
   <!-- ══════════════ FOOTER ══════════════ -->
   <footer class="footer">
-    <div class="container">
+    <canvas id="goldDust" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+    <div class="container" style="position:relative;z-index:1;">
       <div class="foot-top">
         <div class="foot-brand">
           <p class="foot-logo" id="footLogo"></p>
@@ -359,9 +345,9 @@
         <div class="foot-col">
           <p class="fc-head">Navigate</p>
           <a href="#about">About</a>
-          <a href="#programme">Programme</a>
+          <a href="/reset">Programme</a>
           <a href="#resources">Resources</a>
-          <a href="#subscribe">Newsletter</a>
+          <a href="https://sabyroy.substack.com/" target="_blank" rel="noopener">Newsletter</a>
         </div>
         <div class="foot-col">
           <p class="fc-head">Topics</p>
@@ -389,20 +375,6 @@
     </div>
   </footer>
 
-  <!-- ══════════════ MODAL ══════════════ -->
-  <div class="modal-wrap" id="modal" role="dialog" aria-modal="true">
-    <div class="modal-box">
-      <button class="modal-x" id="modalX" aria-label="Close">&#10005;</button>
-      <p class="modal-label">Before you go</p>
-      <h3 class="modal-title">Two free resources.<br/>Yours immediately.</h3>
-      <div class="modal-gifts" id="modalGifts"></div>
-      <form class="modal-form" id="modalForm" novalidate>
-        <input type="email" class="modal-input" placeholder="Your email address" required/>
-        <button type="submit" class="modal-btn">Send me both →</button>
-      </form>
-      <p class="modal-note">No spam. One click to unsubscribe.</p>
-    </div>
-  </div>
 
   <!-- ══════════════ TOAST ══════════════ -->
   <div class="toast" id="toast" role="status" aria-live="polite">
@@ -521,7 +493,7 @@
     "url": "https://sabyroy.com",
     "image": "https://sabyroy.com/assets/headshot.jpg",
     "jobTitle": "Physician, Educator & Entrepreneur",
-    "description": "Doctor, Medical Educator, and Hormone Specialist helping high-achievers optimise their biology and design intentional lives.",
+    "description": "Physician, Medical Educator, and Metabolic Health Coach helping high-achievers optimise their biology and design intentional lives.",
     "sameAs": [
       "https://x.com/thesabyme",
       "https://www.linkedin.com/in/saby-roy-9231433ab/",
@@ -539,6 +511,120 @@
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js"></script>
   <script src="main.js"></script>
+
+  <script>
+  function initGoldSparkle(canvasId) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const COUNT = 40;
+
+    function resize() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      canvas.width = rect.width * devicePixelRatio;
+      canvas.height = rect.height * devicePixelRatio;
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+    }
+
+    function init() {
+      resize();
+      const rect = canvas.parentElement.getBoundingClientRect();
+      particles = [];
+      for (let i = 0; i < COUNT; i++) {
+        particles.push({
+          x: Math.random() * rect.width,
+          y: Math.random() * rect.height,
+          r: Math.random() * 1.8 + 0.4,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.25,
+          alpha: Math.random() * 0.5 + 0.4,
+          pulse: Math.random() * Math.PI * 2,
+          speed: 0.02 + Math.random() * 0.03
+        });
+      }
+    }
+
+    function draw() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.pulse += p.speed;
+        const sparkle = 0.4 + 0.6 * Math.pow(Math.sin(p.pulse), 2);
+        const a = p.alpha * sparkle;
+        if (p.x < -5) p.x = rect.width + 5;
+        if (p.x > rect.width + 5) p.x = -5;
+        if (p.y < -5) p.y = rect.height + 5;
+        if (p.y > rect.height + 5) p.y = -5;
+        /* glow */
+        const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 4);
+        glow.addColorStop(0, 'rgba(220,190,130,' + (a * 0.9) + ')');
+        glow.addColorStop(0.3, 'rgba(201,168,106,' + (a * 0.4) + ')');
+        glow.addColorStop(1, 'rgba(201,168,106,0)');
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * 4, 0, Math.PI * 2);
+        ctx.fillStyle = glow;
+        ctx.fill();
+        /* bright core */
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255,235,180,' + a + ')';
+        ctx.fill();
+        /* star cross */
+        if (p.r > 1 && sparkle > 0.8) {
+          ctx.strokeStyle = 'rgba(255,240,200,' + (a * 0.5) + ')';
+          ctx.lineWidth = 0.5;
+          const len = p.r * 3 * sparkle;
+          ctx.beginPath();
+          ctx.moveTo(p.x - len, p.y); ctx.lineTo(p.x + len, p.y);
+          ctx.moveTo(p.x, p.y - len); ctx.lineTo(p.x, p.y + len);
+          ctx.stroke();
+        }
+      });
+      requestAnimationFrame(draw);
+    }
+
+    init();
+    draw();
+    window.addEventListener('resize', resize);
+  }
+  initGoldSparkle('goldDust');
+  </script>
+
+  <!-- Fetch latest Substack issue and populate the Latest Issue card -->
+  <script>
+  (function(){
+    var FEED = 'https://sabyroy.substack.com/feed';
+    var api  = 'https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(FEED);
+    fetch(api)
+      .then(function(r){ return r.ok ? r.json() : Promise.reject(r.status); })
+      .then(function(data){
+        if (!data || data.status !== 'ok' || !data.items || !data.items.length) return;
+        var post = data.items[0];
+        var title = document.getElementById('nlcTitle');
+        var prev  = document.getElementById('nlcPrev');
+        var link  = document.getElementById('nlcLink');
+        var dateEl = document.getElementById('nlcDate');
+        if (title) title.textContent = '"' + post.title + '"';
+        if (prev && post.description) {
+          var text = post.description.replace(/<[^>]+>/g, '').replace(/\s+/g,' ').trim();
+          prev.textContent = text.length > 220 ? text.slice(0, 217) + '…' : text;
+        }
+        if (link && post.link) link.href = post.link;
+        if (dateEl && post.pubDate) {
+          try {
+            var d = new Date(post.pubDate);
+            dateEl.textContent = d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+          } catch(e){}
+        }
+      })
+      .catch(function(){ /* silent fallback to content.js values */ });
+  })();
+  </script>
 
 </body>
 </html>

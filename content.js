@@ -35,7 +35,7 @@ const CONTENT = {
     linkedin:  "https://www.linkedin.com/in/saby-roy-9231433ab/",
     instagram: "https://www.instagram.com/sabyroyme/",
     youtube:   "https://www.youtube.com/@TheSabyMe",
-    substack:  "https://substack.com/@sabyroy",
+    substack:  "https://sabyroy.substack.com/",
     threads:   "https://www.threads.com/@sabyroyme",
     facebook:  "https://www.facebook.com/profile.php?id=61561647265389",
   },
@@ -45,7 +45,7 @@ const CONTENT = {
      HERO  —  The very first thing people see
   ──────────────────────────────────────────────────────── */
   hero: {
-    eyebrow:   "Doctor  ·  Medical Educator  · Body & Mind Coach",
+    eyebrow:   "Physician  ·  Medical Educator  · Body & Mind Coach",
     // Headline lines — keep to 3 or 4 lines for best layout
     // Wrap a word in <em> tags to make it italic and green
     headline:  [
@@ -73,10 +73,10 @@ const CONTENT = {
      NUMBERS BAR  —  Four striking statistics
   ──────────────────────────────────────────────────────── */
   stats: [
-    { number: "10", suffix: "+", label: "Years in medicine & education" },
+    { number: "10", suffix: "+", label: "Years in medicine" },
+    { number: "8",  suffix: "+", label: "Years in education" },
+    { number: "5",  suffix: "",  label: "Countries & counting" },
     { number: "6",  suffix: "wk", label: "Programme duration" },
-    { number: "4",  suffix: "",   label: "Content pillars" },
-    { number: "35", suffix: "-55", label: "Professionals served" },
   ],
 
 
@@ -111,20 +111,20 @@ const CONTENT = {
     headline:  "You've optimised\neverything.",
     em_line:   "Your body hasn't.",
     lead:      "Your calendar is full. Your output is impressive. Your reputation is earned. And yet — something fundamental is running on default. Your energy flags by 3pm. The clarity you rely on feels thinner than it used to. You've adapted so well to performing tired that you've forgotten what it feels like not to be.",
-    body:      "The 6-Week Reset is a Hormone Specialist-designed protocol for ambitious professionals aged 35–55. It eliminates visceral fat, restores mental clarity, and rebuilds the physical energy your ambitions demand.",
+    body:      "The 6-Week Reset is a physician-designed protocol for desk-bound professionals in their 30s to 50s. It eliminates visceral fat, restores mental clarity, and rebuilds the physical energy your ambitions demand.",
     key_points: [
-      "Hormone Specialist-designed",
+      "Physician-designed",
       "Evidence-based",
       "No medication",
-      "Built for a 60-hour working week",
+      "Built for a 50+ hour working week",
     ],
-    cta_text:  "Apply for the 6-Week Reset",
-    cta_url:   "#",                           // ← CHANGE THIS to your booking link
+    cta_text:  "Join the Metabolic Reset Masterclass",
+    cta_url:   "/reset",
     outcomes: [
-      { title: "Visceral fat reduced",    desc: "Targeted using your hormonal profile — not generic calorie restriction." },
+      { title: "Visceral fat reduced",    desc: "Targeted using your metabolic profile — not generic calorie restriction." },
       { title: "Mental clarity restored", desc: "The brain fog you've normalised is not inevitable. It ends here." },
       { title: "Energy rebuilt",          desc: "Sustainable energy architecture that matches the pace of your ambition." },
-      { title: "Hormones rebalanced",     desc: "The foundation everything else is built on — addressed with precision." },
+      { title: "Metabolism recalibrated",  desc: "The foundation everything else is built on — addressed with precision." },
     ],
   },
 
@@ -136,10 +136,8 @@ const CONTENT = {
     name:          "The SabyRoy Letter",
     headline:      "One letter.\nEvery week.\nWorth your time.",
     description:   "One idea on health. One on education. One on building a life of purpose. Every week, under 5 minutes. Read by ambitious professionals across the UK and beyond.",
-    gift_1_title:  "The High Performer's Health Reset",
-    gift_1_desc:   "A step-by-step PDF guide designed around a 60-hour working week.",
-    gift_2_title:  "The 7-Day Clarity & Energy Challenge",
-    gift_2_desc:   "A free email course delivered daily — evidence-based, immediately actionable.",
+    gift_1_title:  "The Visceral Fat Truth",
+    gift_1_desc:   "A free PDF revealing what your doctor isn't telling you about the hidden fat raising your risk.",
     form_title:    "Start here",
     cta_text:      "Send me the free resources",
     note:          "No spam. Unsubscribe in one click.",
@@ -153,22 +151,22 @@ const CONTENT = {
   ──────────────────────────────────────────────────────── */
   testimonials: [
     {
-      quote:   "Dr. Saby has a rare ability to make complex ideas land simply. His newsletter is one of the very few I read end-to-end, every single week without exception.",
-      name:    "Healthcare Professional",
-      role:    "NHS, United Kingdom",
+      quote:   "I'd been stuck at the same weight for years — tired, foggy, carrying belly fat I couldn't shift no matter what I tried. Dr Saby gave me a system. Food changes first, then fasting structure, then movement. In 6 weeks, I shed stubborn fat. Energy came back. Focus sharper at work. I feel like myself again.",
+      name:    "Bidyut Chanda",
+      role:    "Professional Chef",
+      initial: "B",
+    },
+    {
+      quote:   "I was spending hours every week on repetitive admin tasks — filing, scheduling, formatting documents. Dr Saby introduced me to AI tools I didn't even know existed and showed me exactly how to implement them into my workflow. Within a month, I was saving 10+ hours a week. That time gave me back my evenings and my headspace.",
+      name:    "Diya",
+      role:    "Office Administrator",
+      initial: "D",
+    },
+    {
+      quote:   "I came to Dr Saby at a point where I had the career, the income, the stability — but no clarity on what any of it was actually for. He helped me step back, see the bigger picture, and find purpose in my life. For the first time in years, I feel like I'm building something that matters — not just performing.",
+      name:    "Dr Amit",
+      role:    "IMG Doctor · Australia",
       initial: "A",
-    },
-    {
-      quote:   "I've tried almost everything. The 6-week programme was the first thing that actually worked — and fit around 55-hour weeks without asking me to become a different person.",
-      name:    "Senior Manager",
-      role:    "Financial Services, London",
-      initial: "R",
-    },
-    {
-      quote:   "Finally someone talking about AI in healthcare without the noise. Practical, precise, and always ahead of what I'm hearing elsewhere.",
-      name:    "Consultant Physician",
-      role:    "NHS Foundation Trust",
-      initial: "M",
     },
   ],
 
@@ -223,10 +221,10 @@ const CONTENT = {
     items: [
       { icon: "🧠", category: "Medicine",      title: "Metabolic Health 101",     desc: "Core science behind weight, insulin, and energy — explained simply.",  link: "#" },
       { icon: "⚡", category: "Productivity",  title: "Deep Work Protocol",       desc: "The system I use to produce in 2 hrs what others do in 8.",            link: "#" },
-      { icon: "🤖", category: "AI",            title: "AI for Clinicians",        desc: "Practical tools every doctor should know in 2025.",                    link: "#" },
+      { icon: "🤖", category: "AI",            title: "AI for Clinicians",        desc: "Practical tools every doctor should know in 2026.",                    link: "#" },
       { icon: "🌿", category: "Lifestyle",     title: "Sleep Architecture",       desc: "Why your sleep is broken and exactly how to fix it.",                  link: "#" },
-      { icon: "📖", category: "Medicine",      title: "Hormone Health Primer",    desc: "Testosterone, cortisol, thyroid — the fundamentals in plain English.", link: "#" },
-      { icon: "🎯", category: "Productivity",  title: "The 1-Hour Day Design",    desc: "Build a high-output day around a 60-hour working week.",               link: "#" },
+      { icon: "📖", category: "Medicine",      title: "Metabolic Health Primer",  desc: "Insulin, cortisol, metabolism — the fundamentals in plain English.",   link: "#" },
+      { icon: "🎯", category: "Productivity",  title: "The 1-Hour Day Design",    desc: "Build a high-output day around a 50+ hour working week.",              link: "#" },
     ],
   },
 
@@ -239,7 +237,7 @@ const CONTENT = {
     subheadline: "Your subscriber resources are below.",
     links: [
       { label: "Latest Newsletter Issue",              url: "#" },
-      { label: "PDF: The High Performer's Health Reset", url: "#" },
+      { label: "PDF: The Visceral Fat Truth", url: "#" },
       { label: "7-Day Challenge — Day-by-Day Emails",  url: "#" },
       { label: "Study Zone →",                         url: "study.html" },
     ],

@@ -7,31 +7,33 @@
    SOCIAL MEDIA SVG ICONS  (official brand paths, 24×24 viewBox)
 ────────────────────────────────────────────────────────────── */
 const ICONS = {
-  twitter: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  twitter: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000" aria-hidden="true">
     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.74l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
   </svg>`,
 
-  linkedin: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  linkedin: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0A66C2" aria-hidden="true">
     <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
   </svg>`,
 
-  instagram: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+  instagram: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+    <defs><radialGradient id="ig-g" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#FDD770"/><stop offset="10%" stop-color="#FDD770"/><stop offset="25%" stop-color="#F59041"/><stop offset="50%" stop-color="#E5306C"/><stop offset="75%" stop-color="#BC2A8D"/><stop offset="100%" stop-color="#5B51D8"/></radialGradient></defs>
+    <path fill="url(#ig-g)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
   </svg>`,
 
-  facebook: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  facebook: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1877F2" aria-hidden="true">
     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
   </svg>`,
 
-  youtube: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-    <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136C4.495 20.455 12 20.455 12 20.455s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+  youtube: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+    <path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136C4.495 20.455 12 20.455 12 20.455s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814z"/>
+    <path fill="#FFFFFF" d="M9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
   </svg>`,
 
-  substack: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  substack: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#FF6719" aria-hidden="true">
     <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
   </svg>`,
 
-  threads: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+  threads: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#000000" aria-hidden="true">
     <path d="M19.59 13.197c-.117-3.732-2.441-5.862-6.178-5.886h-.054c-2.246 0-4.109.958-5.249 2.7l1.931 1.325c.858-1.302 2.208-1.58 3.318-1.58h.036c1.283.008 2.25.38 2.876 1.107.454.526.758 1.254.908 2.171-1.131-.193-2.354-.252-3.662-.178-3.676.214-6.04 2.357-5.888 5.337.077 1.511.813 2.813 2.072 3.672 1.068.73 2.441 1.09 3.867 1.013 1.885-.105 3.362-.82 4.392-2.124.772-.976 1.261-2.239 1.475-3.834.886.534 1.541 1.235 1.92 2.078.637 1.41.673 3.731-.685 5.091-1.188 1.189-2.868 1.703-5.238 1.719-2.629-.019-4.62-.863-5.917-2.506-1.207-1.525-1.832-3.73-1.856-6.551.024-2.822.649-5.026 1.856-6.551 1.297-1.643 3.288-2.487 5.917-2.506 2.645.019 4.677.872 6.041 2.537.68.831 1.194 1.877 1.529 3.111l2.265-.604c-.42-1.573-1.07-2.934-1.958-4.062C19.532 3.028 16.896 1.77 13.508 1.748h-.018c-3.382.022-5.98 1.285-7.727 3.752C4.15 7.448 3.38 10.146 3.356 13.5c.024 3.354.794 6.052 2.407 8 1.747 2.467 4.345 3.73 7.727 3.752h.018c3.012-.02 5.13-.806 6.879-2.555 2.183-2.183 2.116-5.28 1.397-7.083-.498-1.247-1.455-2.265-2.794-2.981l.6-.436zm-7.171 6.748c-1.61.09-3.28-.632-3.36-2.177-.059-1.137.809-2.408 3.428-2.56.3-.017.593-.026.882-.026.98 0 1.895.096 2.728.279-.31 3.882-2.103 4.403-3.678 4.484z"/>
   </svg>`,
 };
@@ -44,8 +46,8 @@ function renderAll() {
   const C = CONTENT;
 
   // ── NAV ──
-  document.getElementById('navLogo').textContent = C.name;
-  document.getElementById('navCta').textContent  = 'Work With Me';
+  document.getElementById('navLogo').textContent = 'SR';
+  document.getElementById('navCta').textContent  = C.programme.cta_text;
 
   // ── HERO ──
   document.getElementById('heroEyebrow').textContent = C.hero.eyebrow;
@@ -64,14 +66,16 @@ function renderAll() {
   document.getElementById('missQuote').innerHTML = `"${C.mission.quote}"`;
   document.getElementById('missBody').textContent = C.mission.body;
 
-  // ── STATS BAR ──
+  // ── STATS BAR (skipped if qual-ticker is present) ──
   const statsBar = document.getElementById('statsBar');
-  statsBar.innerHTML = C.stats.map(s => `
-    <div class="stat-item">
-      <div class="stat-n"><span class="stat-counter" data-target="${s.number}">${s.number}</span><sup>${s.suffix}</sup></div>
-      <p class="stat-l">${s.label}</p>
-    </div>
-  `).join('');
+  if (statsBar && !statsBar.classList.contains('qual-ticker')) {
+    statsBar.innerHTML = C.stats.map(s => `
+      <div class="stat-item">
+        <div class="stat-n"><span class="stat-counter" data-target="${s.number}">${s.number}</span><sup>${s.suffix}</sup></div>
+        <p class="stat-l">${s.label}</p>
+      </div>
+    `).join('');
+  }
 
   // ── ABOUT ──
   const aHed = document.getElementById('aboutHed');
@@ -130,24 +134,7 @@ function renderAll() {
   // ── VIDEOS ──
   renderVideos();
 
-  // ── SUBSCRIBE ──
-  document.getElementById('subLabel').textContent = C.newsletter.name;
-  document.getElementById('subHed').textContent   = C.newsletter.headline;
-  document.getElementById('subDesc').textContent  = C.newsletter.description;
-  document.getElementById('subFormTitle').textContent = C.newsletter.form_title;
-  document.getElementById('subBtn').textContent   = C.newsletter.cta_text;
-  document.getElementById('subNote').textContent  = C.newsletter.note;
-
-  const giftsEl = document.getElementById('subGifts');
-  giftsEl.innerHTML = `
-    <span class="sub-gifts-label">Free with your subscription</span>
-    <div class="sub-gift"><span class="sg-n">01</span>
-      <div><strong>${C.newsletter.gift_1_title}</strong><span>${C.newsletter.gift_1_desc}</span></div>
-    </div>
-    <div class="sub-gift"><span class="sg-n">02</span>
-      <div><strong>${C.newsletter.gift_2_title}</strong><span>${C.newsletter.gift_2_desc}</span></div>
-    </div>
-  `;
+  // ── SUBSCRIBE (section removed) ──
 
   // ── TESTIMONIALS ──
   const track = document.getElementById('testiTrack');
@@ -166,9 +153,6 @@ function renderAll() {
   document.getElementById('modalGifts').innerHTML = `
     <div class="mg-i"><span class="mg-n">01</span>
       <div><strong>${C.newsletter.gift_1_title}</strong><span>Free PDF guide</span></div>
-    </div>
-    <div class="mg-i"><span class="mg-n">02</span>
-      <div><strong>${C.newsletter.gift_2_title}</strong><span>Free email course</span></div>
     </div>
   `;
 
@@ -201,7 +185,8 @@ function renderAll() {
     ).join('');
 
   // YouTube link
-  document.getElementById('ytLink').href = C.socials.youtube || '#';
+  const ytLink = document.getElementById('ytLink');
+  if (ytLink) ytLink.href = C.socials.youtube || '#';
 
   // Browser title
   document.title = C.name;
@@ -212,7 +197,7 @@ function renderAll() {
     const ctaEl = document.getElementById('progCta');
     if (ctaEl) ctaEl.href = _siteCfg.programme_cta_url;
     const navCta = document.getElementById('navCta');
-    if (navCta) navCta.href = _siteCfg.programme_cta_url;
+    if (navCta) navCta.href = '/reset';
   }
   if (_siteCfg.youtube_url) {
     const ytEl = document.getElementById('ytLink');
@@ -225,6 +210,7 @@ function renderAll() {
 ────────────────────────────────────────────────────────────── */
 function renderVideos() {
   const grid = document.getElementById('vidsGrid');
+  if (!grid) return;
   const C = CONTENT;
   const gradients = [
     'linear-gradient(135deg,#1B4332,#40916C)',
@@ -270,26 +256,29 @@ function renderVideos() {
 ────────────────────────────────────────────────────────────── */
 function initPreloader() {
   const pl = document.getElementById('preloader');
+  if (!pl) { initHeroAnimation(); return; }
 
-  // Wait for BOTH the minimum display time AND fonts to finish loading.
-  // This prevents the hero animation from running with fallback-font metrics
-  // (which causes letter-tops to bleed above the overflow:hidden line clips).
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    if (pl.parentNode) pl.remove();
+    initHeroAnimation();
+  };
+
   const minDelay   = new Promise(resolve => setTimeout(resolve, 1800));
   const fontsReady = (document.fonts && document.fonts.ready)
                        ? document.fonts.ready
                        : Promise.resolve();
 
   Promise.all([minDelay, fontsReady]).then(() => {
-    gsap.to(pl, {
-      yPercent: -100,
-      duration: 0.9,
-      ease: 'power4.inOut',
-      onComplete: () => {
-        pl.remove();
-        initHeroAnimation();
-      }
-    });
+    pl.style.transition = 'transform 0.9s cubic-bezier(0.86,0,0.07,1)';
+    pl.style.transform = 'translateY(-100%)';
+    setTimeout(finish, 950);
   });
+
+  // Hard fallback in case anything stalls
+  setTimeout(finish, 4000);
 }
 
 
@@ -484,9 +473,10 @@ function initScrollAnimations() {
   });
 
   // ── TESTIMONIALS ──
+  gsap.set('.testi-card', { opacity: 1, y: 0, clearProps: 'opacity,transform' });
   gsap.from('.testi-card', {
     opacity: 0, y: 30, duration: 0.9, stagger: 0.1, ease: 'power4.out',
-    scrollTrigger: { trigger: '.testi-track', start: 'top 80%' }
+    scrollTrigger: { trigger: '.testi-track', start: 'top 90%', toggleActions: 'play none none none' }
   });
 }
 
@@ -780,21 +770,24 @@ function initForms() {
     e.preventDefault();
     const btn   = e.target.querySelector('button');
     const el    = document.getElementById('heroEmail');
+    const nameEl = document.getElementById('heroName');
     const email = el.value.trim();
-    if (!email) return;
+    const name  = nameEl ? nameEl.value.trim() : '';
+    if (!email || !name) return;
 
     // Loading state
     const orig = btn.textContent;
     btn.textContent = '...';
     btn.disabled = true;
 
-    const result = await subscribeEmail({ email, source: 'hero' });
+    const result = await subscribeEmail({ email, firstName: name, source: 'hero' });
 
     btn.textContent = orig;
     btn.disabled    = false;
 
     if (result.ok) {
       el.value = '';
+      if (nameEl) nameEl.value = '';
       showToast('You\'re subscribed — check your inbox for your free resources.');
       sessionStorage.setItem('subscribed', '1');
     } else {
@@ -802,8 +795,9 @@ function initForms() {
     }
   });
 
-  // ── SUBSCRIBE SECTION FORM ──
-  document.getElementById('subForm').addEventListener('submit', async e => {
+  // ── SUBSCRIBE SECTION FORM (section removed) ──
+  const __subForm = document.getElementById('subForm');
+  if (__subForm) __subForm.addEventListener('submit', async e => {
     e.preventDefault();
     const btn    = e.target.querySelector('button[type="submit"]');
     const inputs = e.target.querySelectorAll('input');
@@ -846,35 +840,10 @@ function initForms() {
 
 
 /* ──────────────────────────────────────────────────────────────
-   EXIT-INTENT MODAL
+   FREE RESOURCES FORM
 ────────────────────────────────────────────────────────────── */
 function initModal() {
-  const wrap  = document.getElementById('modal');
-  const closeX = document.getElementById('modalX');
-  const form   = document.getElementById('modalForm');
-  let shown    = false;
-
-  function open() {
-    if (shown) return;
-    if (sessionStorage.getItem('modalDismissed')) return;
-    if (sessionStorage.getItem('subscribed')) return;
-    shown = true;
-    wrap.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
-
-  function close() {
-    wrap.classList.remove('open');
-    document.body.style.overflow = '';
-    sessionStorage.setItem('modalDismissed', '1');
-  }
-
-  document.addEventListener('mouseleave', e => { if (e.clientY < 0) setTimeout(open, 400); });
-  setTimeout(() => { if (!shown) open(); }, 55000);
-
-  closeX.addEventListener('click', close);
-  wrap.addEventListener('click', e => { if (e.target === wrap) close(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  const form = document.getElementById('modalForm');
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -887,17 +856,17 @@ function initModal() {
     btn.textContent = '...';
     btn.disabled = true;
 
-    const result = await subscribeEmail({ email, source: 'exit-modal' });
+    const result = await subscribeEmail({ email, source: 'free-resources' });
 
     if (result.ok) {
-      close();
       showToast('Check your inbox — your free resources are heading to you now.');
       sessionStorage.setItem('subscribed', '1');
+      el.value = '';
     } else {
-      btn.textContent = orig;
-      btn.disabled    = false;
       showToast(result.msg || 'Something went wrong. Please try again.', 'error');
     }
+    btn.textContent = orig;
+    btn.disabled    = false;
   });
 }
 
