@@ -380,7 +380,7 @@
   <div class="author" style="justify-content:center;">
     <img class="author-photo" src="/assets/headshot.jpg" alt="Dr. Saby Roy"/>
     <div class="author-info">
-      <p class="author-bio">Dr. Saby Roy. Lost 22 lbs of stubborn belly fat in 4 months. Now helping desk professionals do the same.</p>
+      <p class="author-bio">Dr. Saby Roy, MBBS, MRCP — UK-registered physician. Writes on lifestyle medicine for desk-bound professionals. Individual experiences vary.</p>
     </div>
   </div>
 
@@ -487,7 +487,7 @@
   </script>
 
   <div class="disclaimer">
-    <p><strong>Medical disclaimer.</strong> Educational content only &mdash; not medical advice. Always consult your GP before changing your diet, exercise, or lifestyle. Results vary between individuals. Typical results are not guaranteed.</p>
+    <p><strong>Medical disclaimer.</strong> Dr Sabyasachi Roy, MBBS, MRCP &mdash; UK-registered physician. Content is educational only and not a substitute for individualised medical advice. Consult your GP before making dietary, exercise, or lifestyle changes &mdash; particularly if you have a medical condition, are pregnant, or take prescription medication. Do not stop or adjust prescribed medication without speaking to your doctor. Individual experiences vary; no specific outcome is guaranteed. Testimonials reflect one person's experience and are not representative.</p>
   </div>
   <footer class="foot">&copy; <span id="footYear"></span> Dr. Saby Roy. All rights reserved. &middot; <a href="/privacy">Privacy Policy</a> &middot; <a href="/terms">Terms</a></footer>
   <div class="toast" id="toast"><div class="toast-dot"></div><span id="toastMsg"></span></div>
@@ -499,5 +499,6 @@
     async function subscribeEmail({ email, firstName = '', source = 'free-v5-proof' }) { try { const res = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, first_name: firstName, source }) }); if (!res.ok) { saveEmailLocally(email, firstName, source); return { ok: false, msg: 'Something went wrong.' }; } saveEmailLocally(email, firstName, source); return { ok: true }; } catch (e) { saveEmailLocally(email, firstName, source); return { ok: true }; } }
     document.getElementById('optinForm').addEventListener('submit', async (e) => { e.preventDefault(); const emailEl = document.getElementById('emailInput'), nameEl = document.getElementById('firstName'), btn = document.getElementById('submitBtn'); const email = emailEl.value.trim(); if (!email) return; const orig = btn.textContent; btn.textContent = '...'; btn.disabled = true; const result = await subscribeEmail({ email, firstName: nameEl.value.trim() }); if (result.ok) { window.location.href = '/thank-you'; return; } else { showToast(result.msg, 'error'); } btn.textContent = orig; btn.disabled = false; });
   </script>
+  <script src="/assets/cookie-banner.js" defer></script>
 </body>
 </html>
