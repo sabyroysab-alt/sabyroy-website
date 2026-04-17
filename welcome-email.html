@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<title>Welcome — your Metabolic Reset Blueprint</title>
+<!--
+   ────────────────────────────────────────────────────────────────────────
+   DR. SABY ROY · WELCOME EMAIL
+   To paste into Kit (ConvertKit):
+     Automate → Visual Automations → New
+     Trigger: "Tag is added" → website-newsletter
+     Action: Email → paste the body (without <html><head> etc.)
+   ────────────────────────────────────────────────────────────────────────
+-->
+</head>
+<body style="margin:0;padding:0;background:#F7F4EF;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1B4332;line-height:1.6;-webkit-font-smoothing:antialiased;">
+
+<!-- Preview text (hidden in inbox preview) -->
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;height:0;width:0;">
+Your guide is inside.
+</div>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F7F4EF;padding:40px 16px;">
+  <tr>
+    <td align="center">
+
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="560" style="max-width:560px;width:100%;background:#ffffff;border-radius:4px;box-shadow:0 14px 40px rgba(27,67,50,0.08);">
+        <tr>
+          <td style="padding:40px 40px 16px 40px;">
+
+            <!-- Brand mark -->
+            <p style="margin:0 0 28px 0;font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:500;color:#1B4332;letter-spacing:0.02em;">Dr. Saby Roy</p>
+
+            <!-- Opening -->
+            <p style="margin:0 0 20px 0;font-size:16px;color:#1B4332;">Hi {{ subscriber.first_name | default: "there" }},</p>
+
+            <p style="margin:0 0 26px 0;font-size:16px;color:#3D3D35;">Thank you for being here. Your copy of <em style="color:#1B4332;">Metabolic Reset Blueprint</em> is below.</p>
+
+            <!-- CTA Button -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 30px 0;">
+              <tr>
+                <td style="background:#1B4332;border-radius:999px;">
+                  <a href="https://sabyroy.com/assets/metabolic-reset-blueprint.pdf"
+                     style="display:inline-block;padding:16px 36px;font-family:'Inter',-apple-system,sans-serif;font-size:15px;font-weight:700;color:#E8D5A3;text-decoration:none;letter-spacing:0.04em;border:1.5px solid rgba(212,175,55,0.25);border-radius:999px;">
+                    Download the Blueprint &rarr;
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <!-- Body -->
+            <p style="margin:0 0 20px 0;font-size:16px;color:#3D3D35;">Read it when the evening is quiet — twelve minutes, that's all it needs.</p>
+
+            <p style="margin:0 0 24px 0;font-size:16px;color:#3D3D35;">One short letter a week, usually Tuesdays. No agenda. If it stops being useful, the unsubscribe link is always there.</p>
+
+            <p style="margin:0 0 8px 0;font-size:16px;color:#3D3D35;">Glad you're reading.</p>
+
+            <!-- Signature -->
+            <p style="margin:28px 0 4px 0;font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:22px;color:#1B4332;line-height:1;">— Saby Roy</p>
+            <p style="margin:0 0 0 0;font-size:11px;letter-spacing:0.12em;text-transform:uppercase;color:#7A7A6E;">MBBS &middot; MRCP</p>
+
+          </td>
+        </tr>
+
+        <!-- Fine print -->
+        <tr>
+          <td style="padding:28px 40px 36px 40px;border-top:1px solid #EDE7DC;">
+            <p style="margin:0;font-size:11px;line-height:1.6;color:#7A7A6E;">
+              Dr Sabyasachi Roy, MBBS, MRCP — UK-registered physician. This email is educational only and not a substitute for individualised medical advice. Consult your GP before making dietary, exercise, or lifestyle changes, particularly if you have a medical condition, are pregnant, or take prescription medication.
+            </p>
+          </td>
+        </tr>
+      </table>
+
+      <!-- Footer (outside card) -->
+      <p style="margin:18px 0 0 0;font-size:11px;color:#BDBDB0;text-align:center;">
+        {{ unsubscribe_link }}
+      </p>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
