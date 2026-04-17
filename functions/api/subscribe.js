@@ -67,9 +67,12 @@ export async function onRequest({ request, env }) {
       body:    JSON.stringify({
         email_address: email,
         first_name:    first_name || undefined,
-        // state omitted → Kit creates as 'inactive' (pending confirmation)
-        // so the {{ confirm_url }} button in the incentive email actually
-        // works and redirects to the PDF. Do NOT set 'active' here.
+        // state: 'inactive' → creates subscriber as pending confirmation.
+        // This is REQUIRED so the {{ confirm_url }} button in the incentive
+        // email actually works and redirects to the PDF. If 'active' is
+        // set (or is the default), the confirm URL 404s because Kit sees
+        // the subscriber as already confirmed.
+        state:         'inactive',
         fields:        source ? { source } : undefined,
       }),
     });
