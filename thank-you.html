@@ -3,225 +3,152 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Your Free Guide Is Ready | Dr. Saby Roy</title>
-  <meta name="description" content="Download your free copy of The Visceral Fat Truth."/>
+  <title>You're in — check your inbox | Dr. Saby Roy</title>
+  <meta name="description" content="Your free guide is on its way to your inbox."/>
   <meta name="robots" content="noindex, nofollow"/>
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,300;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --cream:#F7F4EF;--cream-2:#EDE7DC;--ink:#0C0C0A;--ink-70:#3D3D35;--ink-45:#7A7A6E;--ink-20:#BDBDB0;
-      --forest:#1B4332;--forest-mid:#2D6A4F;--gold:#9B7D44;--gold-lite:#C9A86A;--white:#FFFFFF;
-      --display:'Cormorant Garamond',Georgia,serif;--body:'Inter',-apple-system,sans-serif;
+      --forest:#1B4332;--forest-mid:#2D6A4F;--gold:#9B7D44;--gold-lite:#C9A86A;
+      --display:'Cormorant Garamond',Georgia,serif;--body:'Inter',sans-serif;
     }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: var(--body); background: var(--cream); color: var(--ink);
-      line-height: 1.6; -webkit-font-smoothing: antialiased;
-      min-height: 100vh; display: flex; flex-direction: column;
-    }
-
-    /* ── TOPBAR ── */
+    body { font-family: var(--body); background: var(--cream); color: var(--ink); line-height: 1.6; min-height: 100vh; display: flex; flex-direction: column; overflow-x: hidden; }
     .topbar { padding: 1.25rem 2rem; text-align: center; }
     .topbar a { font-family: var(--display); font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+    main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 3rem 1.5rem; }
+    .wrap { max-width: 620px; width: 100%; text-align: center; }
 
-    /* ── MAIN CONTENT ── */
-    .ty-main {
-      flex: 1; display: flex; align-items: center; justify-content: center;
-      padding: 3rem 1.5rem;
-    }
-    .ty-container {
-      max-width: 560px; width: 100%; text-align: center;
-    }
-
-    /* ── SUCCESS ICON ── */
-    .ty-icon {
-      width: 64px; height: 64px; margin: 0 auto 2rem;
+    /* TICK */
+    .tick {
+      width: 64px; height: 64px; margin: 0 auto 1.5rem;
       border-radius: 50%; background: var(--forest);
       display: flex; align-items: center; justify-content: center;
-      animation: scaleIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
-    .ty-icon svg { width: 28px; height: 28px; }
-    @keyframes scaleIn {
-      0% { transform: scale(0); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
-    }
+    .tick svg { width: 28px; height: 28px; }
+    @keyframes pop { 0% { transform: scale(0); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
 
-    /* ── HEADING ── */
-    .ty-heading {
+    .heading { font-family: var(--display); font-size: clamp(2rem, 5vw, 2.7rem); font-weight: 400; line-height: 1.15; margin-bottom: 0.75rem; animation: rise 0.6s ease 0.2s both; }
+    .heading em { font-style: italic; color: var(--forest); }
+    .sub-small { font-size: 0.95rem; color: var(--ink-70); margin-bottom: 1.25rem; animation: rise 0.6s ease 0.35s both; }
+    .sub-small strong { color: var(--ink); }
+    .big-call {
       font-family: var(--display);
-      font-size: clamp(1.8rem, 4.5vw, 2.6rem);
-      font-weight: 400; line-height: 1.2;
-      margin-bottom: 1rem;
-      animation: fadeUp 0.6s ease both 0.15s;
+      font-size: clamp(1.7rem, 4.5vw, 2.35rem);
+      font-weight: 500; color: var(--forest);
+      line-height: 1.2; letter-spacing: -0.005em;
+      margin-bottom: 2rem;
+      animation: rise 0.6s ease 0.5s both;
     }
-    .ty-heading em { font-style: italic; color: var(--forest); }
-    .ty-sub {
-      font-size: 1rem; color: var(--ink-70); line-height: 1.7;
-      margin-bottom: 2.5rem;
-      animation: fadeUp 0.6s ease both 0.3s;
-    }
-    @keyframes fadeUp {
-      0% { opacity: 0; transform: translateY(16px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+    .big-call em { font-style: italic; color: var(--gold); }
+    @keyframes rise { 0% { opacity: 0; transform: translateY(10px); } 100% { opacity: 1; transform: none; } }
 
-    /* ── DOWNLOAD CARD ── */
-    .ty-card {
-      background: var(--white); border: 1px solid var(--cream-2);
-      padding: 2.5rem 2rem; box-shadow: 0 12px 40px rgba(0,0,0,0.05);
-      animation: fadeUp 0.6s ease both 0.45s;
+    /* TRANSITION ENVELOPE: between copy and Gmail mockup */
+    .env-transition {
+      width: 96px; height: 80px; margin: 0 auto 2rem;
+      position: relative;
+      animation: rise 0.6s ease 0.5s both;
     }
-    .ty-card-label {
-      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--ink-45);
-      margin-bottom: 0.75rem;
+    .env {
+      width: 84px; height: 56px; background: var(--forest);
+      border-radius: 3px; position: absolute; top: 12px; left: 6px;
+      box-shadow: 0 14px 32px rgba(27,67,50,0.22);
+      animation: drift 3s ease-in-out infinite;
     }
-    .ty-card-title {
-      font-family: var(--display); font-size: 1.35rem;
-      font-weight: 400; color: var(--ink); margin-bottom: 0.4rem;
+    .env::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 32px; background: var(--forest-mid); clip-path: polygon(0 0, 50% 60%, 100% 0); }
+    .env::after { content: ''; position: absolute; top: 34px; left: 50%; width: 2px; height: 2px; background: var(--gold-lite); border-radius: 50%; box-shadow: -7px 4px 0 var(--gold-lite), 7px 4px 0 var(--gold-lite); transform: translateX(-50%); }
+    .dust { position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--gold-lite); opacity: 0.55; animation: twinkle 2.4s ease-in-out infinite; }
+    .dust:nth-child(1) { top: 4px; left: 8px; animation-delay: 0.3s; }
+    .dust:nth-child(2) { top: 0; left: 82px; animation-delay: 1s; }
+    .dust:nth-child(3) { top: 70px; left: 0; animation-delay: 1.5s; }
+    .dust:nth-child(4) { top: 74px; left: 90px; animation-delay: 2s; }
+    .env-arrow {
+      position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+      width: 1px; height: 16px; background: var(--gold); opacity: 0.5;
     }
-    .ty-card-meta {
-      font-size: 0.75rem; color: var(--ink-20); margin-bottom: 1.75rem;
-    }
+    .env-arrow::after { content: ''; position: absolute; bottom: 0; left: -3px; border-left: 3.5px solid transparent; border-right: 3.5px solid transparent; border-top: 5px solid var(--gold); opacity: 0.6; }
+    @keyframes drift { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
+    @keyframes twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.6); } 50% { opacity: 0.95; transform: scale(1.3); } }
 
-    /* ── DOWNLOAD BUTTON ── */
-    .ty-download {
-      display: inline-flex; align-items: center; gap: 0.65rem;
-      font-family: var(--body); font-size: 0.92rem; font-weight: 600;
-      color: #E8D5A3; background: var(--forest);
-      border: 1.5px solid rgba(212,175,55,0.25); padding: 1.1rem 2.25rem; cursor: pointer;
-      text-decoration: none; transition: background 0.25s, transform 0.2s, border-color 0.2s;
-      color: #E8D5A3;
-    }
-    .ty-download:hover { background: var(--forest-mid); transform: translateY(-1px); border-color: rgba(212,175,55,0.4); }
-    .ty-download svg { width: 18px; height: 18px; flex-shrink: 0; }
+    /* Gmail mock */
+    .gmail { background: #fff; border: 1px solid var(--cream-2); border-radius: 4px; box-shadow: 0 24px 50px rgba(27,67,50,0.12); overflow: hidden; text-align: left; animation: rise 0.6s ease 0.65s both; }
+    .gm-bar { background: #f5f5f5; padding: 0.55rem 1rem; font-size: 0.75rem; color: var(--ink-45); border-bottom: 1px solid var(--cream-2); display: flex; align-items: center; gap: 0.5rem; }
+    .gm-dot { width: 9px; height: 9px; border-radius: 50%; background: #ddd; }
+    .gm-tabs { display: flex; gap: 1px; background: var(--cream-2); border-bottom: 2px solid var(--cream-2); }
+    .gm-tab { padding: 0.75rem 1.25rem; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; background: #fafafa; color: var(--ink-45); }
+    .gm-tab.active { background: #fff; color: var(--forest); border-top: 2px solid var(--forest); margin-top: -1px; padding-top: 0.7rem; }
+    .gm-row { display: grid; grid-template-columns: 40px 180px 1fr 80px; gap: 0.75rem; padding: 0.9rem 1rem; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.05); font-size: 0.88rem; }
+    .gm-row.target { background: rgba(201,168,106,0.12); border-left: 3px solid var(--gold); padding-left: calc(1rem - 3px); position: relative; }
+    .gm-row.target::after { content: 'THIS ONE'; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 0.55rem; font-weight: 800; letter-spacing: 0.2em; color: var(--gold); background: #fff; padding: 2px 8px; border: 1px solid var(--gold-lite); border-radius: 2px; }
+    .gm-ava { width: 32px; height: 32px; border-radius: 50%; background: var(--forest); color: var(--gold-lite); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-style: italic; font-size: 0.95rem; }
+    .gm-from { font-weight: 600; color: var(--ink); font-size: 0.85rem; }
+    .gm-snip { color: var(--ink-45); font-size: 0.82rem; }
+    .gm-snip b { color: var(--ink); font-weight: 600; }
+    .gm-time { font-size: 0.7rem; color: var(--ink-45); text-align: right; }
+    .gm-row:not(.target) .gm-from, .gm-row:not(.target) .gm-snip { opacity: 0.45; }
 
-    /* ── NEXT STEPS ── */
-    .ty-next {
-      margin-top: 2.5rem;
-      animation: fadeUp 0.6s ease both 0.6s;
-    }
-    .ty-next-label {
-      font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--ink-45);
-      margin-bottom: 1.25rem;
-    }
-    .ty-steps {
-      display: flex; flex-direction: column; gap: 0;
-      text-align: left; max-width: 400px; margin: 0 auto;
-    }
-    .ty-step {
-      display: flex; align-items: flex-start; gap: 1rem;
-      padding: 0.85rem 0;
-      border-bottom: 1px solid rgba(0,0,0,0.04);
-    }
-    .ty-step:last-child { border-bottom: none; }
-    .ty-step-num {
-      width: 26px; height: 26px; border-radius: 50%;
-      background: rgba(27,67,50,0.08); color: var(--forest);
-      font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .ty-step-text {
-      font-size: 0.88rem; color: var(--ink-70); line-height: 1.5;
-      padding-top: 0.15rem;
-    }
+    .pill-row { margin-top: 1.5rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; }
+    .pill { font-size: 0.72rem; font-weight: 600; color: var(--forest); background: rgba(27,67,50,0.06); padding: 0.5rem 0.9rem; border-radius: 999px; letter-spacing: 0.03em; }
 
-    /* ── PROGRAMME CTA ── */
-    .ty-cta {
-      margin-top: 2.5rem; padding-top: 2.5rem;
-      border-top: 1px solid rgba(0,0,0,0.05);
-      animation: fadeUp 0.6s ease both 0.75s;
-    }
-    .ty-cta p {
-      font-size: 0.85rem; color: var(--ink-45); margin-bottom: 0.75rem;
-    }
-    .ty-cta a {
-      font-size: 0.85rem; font-weight: 600; color: var(--forest);
-      text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.2);
-      padding-bottom: 0.1rem; transition: border-color 0.25s;
-    }
-    .ty-cta a:hover { border-color: var(--forest); }
+    .hunt-instr { margin-top: 2rem; font-size: 0.92rem; color: var(--ink-70); line-height: 1.7; }
+    .hunt-instr strong { color: var(--forest); font-weight: 600; }
 
-    /* ── FOOTER ── */
-    .foot {
-      padding: 2rem 1.5rem; text-align: center;
-      font-size: 0.65rem; color: var(--ink-20);
-    }
+    .footer-cta { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.06); font-size: 0.85rem; color: var(--ink-45); }
+    .footer-cta a { color: var(--forest); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(27,67,50,0.2); }
+    .foot { padding: 2rem 1.5rem; text-align: center; font-size: 0.65rem; color: var(--ink-20); }
     .foot a { color: var(--ink-45); text-decoration: none; }
 
-    @media (max-width: 480px) {
-      .ty-card { padding: 2rem 1.25rem; }
-      .ty-download { width: 100%; justify-content: center; }
+    @media (max-width: 560px) {
+      .gm-row { grid-template-columns: 32px 110px 1fr; gap: 0.5rem; padding: 0.75rem 0.85rem; font-size: 0.8rem; }
+      .gm-time { display: none; }
+      .gm-row.target::after { display: none; }
     }
   </style>
 </head>
 <body>
-
   <div class="topbar"><a href="/">Dr. Saby Roy</a></div>
+  <main>
+    <div class="wrap">
+      <div class="tick"><svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+      <h1 class="heading">You're in. <em>Here's your guide.</em></h1>
+      <p class="sub-small">I just sent <strong>The Visceral Fat Truth</strong>.</p>
+      <p class="big-call">Please check your <em>inbox</em>.</p>
 
-  <main class="ty-main">
-    <div class="ty-container">
-
-      <!-- Success icon -->
-      <div class="ty-icon">
-        <svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="20 6 9 17 4 12"/>
-        </svg>
+      <!-- ENVELOPE as visual bridge -->
+      <div class="env-transition">
+        <span class="dust"></span><span class="dust"></span><span class="dust"></span><span class="dust"></span>
+        <div class="env"></div>
+        <div class="env-arrow"></div>
       </div>
 
-      <h1 class="ty-heading">You're in. <em>Here's your guide.</em></h1>
-      <p class="ty-sub">Your copy of The Visceral Fat Truth is ready to download. We've also sent a copy to your inbox.</p>
-
-      <!-- Download card -->
-      <div class="ty-card">
-        <p class="ty-card-label">Free PDF Blueprint</p>
-        <h2 class="ty-card-title">The Visceral Fat Truth</h2>
-        <p class="ty-card-meta">PDF &middot; Evidence-based</p>
-        <a href="/assets/the-visceral-fat-truth.pdf" download class="ty-download">
-          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-            <polyline points="7 10 12 15 17 10"/>
-            <line x1="12" y1="15" x2="12" y2="3"/>
-          </svg>
-          Download your free guide
-        </a>
+      <div class="gmail">
+        <div class="gm-bar"><span class="gm-dot"></span><span class="gm-dot" style="background:#fbc"></span><span class="gm-dot" style="background:#bfb"></span><span style="margin-left:0.5rem">Inbox · 14 messages</span></div>
+        <div class="gm-tabs"><div class="gm-tab active">Primary</div><div class="gm-tab">Promotions</div><div class="gm-tab">Social</div></div>
+        <div class="gm-row"><div class="gm-ava" style="background:#ddd;color:#666">JD</div><div class="gm-from">John D</div><div class="gm-snip">Re: Tuesday's meeting...</div><div class="gm-time">10:12 AM</div></div>
+        <div class="gm-row target"><div class="gm-ava">S</div><div class="gm-from">Saby Roy</div><div class="gm-snip"><b>Your guide — The Visceral Fat Truth</b></div><div class="gm-time">just now</div></div>
+        <div class="gm-row"><div class="gm-ava" style="background:#bbb;color:#666">AM</div><div class="gm-from">Amazon</div><div class="gm-snip">Your order has shipped...</div><div class="gm-time">9:47 AM</div></div>
       </div>
 
-      <!-- Next steps -->
-      <div class="ty-next">
-        <p class="ty-next-label">What to do next</p>
-        <div class="ty-steps">
-          <div class="ty-step">
-            <div class="ty-step-num">1</div>
-            <p class="ty-step-text">Read it today — it takes less than 5 minutes</p>
-          </div>
-          <div class="ty-step">
-            <div class="ty-step-num">2</div>
-            <p class="ty-step-text">Try it for 3 days and notice the difference</p>
-          </div>
-          <div class="ty-step">
-            <div class="ty-step-num">3</div>
-            <p class="ty-step-text">Check your inbox for weekly insights from Dr. Saby</p>
-          </div>
-        </div>
+      <div class="pill-row">
+        <span class="pill">From: Saby Roy</span>
+        <span class="pill">saby@sabyroy.com</span>
+        <span class="pill">Subject: "Your guide"</span>
       </div>
 
-      <!-- Programme CTA -->
-      <div class="ty-cta">
-        <p>Want guided support with the full programme?</p>
-        <a href="/reset">Learn about the 6-Week Reset &rarr;</a>
+      <div class="hunt-instr">
+        Not in <strong>Primary</strong>? Check <strong>Promotions</strong> and <strong>Spam</strong> — drag to Primary when you find it.
       </div>
 
+      <div class="footer-cta">Ready for the full programme? <a href="/reset">See the 6-Week Reset &rarr;</a></div>
     </div>
   </main>
-
-  <footer class="foot">&copy; <span id="footYear"></span> Dr. Saby Roy. All rights reserved. &middot; <a href="/privacy">Privacy Policy</a></footer>
-
-  <script>document.getElementById('footYear').textContent = new Date().getFullYear();</script>
+  <footer class="foot">&copy; <span id="y"></span> Dr. Saby Roy · <a href="/privacy">Privacy</a></footer>
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script src="/assets/cookie-banner.js" defer></script>
 </body>
 </html>
