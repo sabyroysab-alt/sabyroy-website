@@ -67,7 +67,9 @@ export async function onRequest({ request, env }) {
       body:    JSON.stringify({
         email_address: email,
         first_name:    first_name || undefined,
-        state:         'active',
+        // state omitted → Kit creates as 'inactive' (pending confirmation)
+        // so the {{ confirm_url }} button in the incentive email actually
+        // works and redirects to the PDF. Do NOT set 'active' here.
         fields:        source ? { source } : undefined,
       }),
     });
