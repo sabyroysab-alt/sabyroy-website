@@ -37,6 +37,7 @@
     .heading em { font-style: italic; color: var(--forest); }
     .sub-small { font-size: 0.95rem; color: var(--ink-70); margin-bottom: 1.25rem; animation: rise 0.6s ease 0.35s both; }
     .sub-small strong { color: var(--ink); }
+    #user-email { font-family: SF Mono, Menlo, monospace; font-size: 0.9em; background: rgba(27,67,50,0.06); padding: 0.15rem 0.5rem; border-radius: 3px; color: var(--forest); font-weight: 600; word-break: break-all; }
     .big-call {
       font-family: var(--display);
       font-size: clamp(1.7rem, 4.5vw, 2.35rem);
@@ -116,8 +117,8 @@
     <div class="wrap">
       <div class="tick"><svg fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
       <h1 class="heading">You're <em>in</em>.</h1>
-      <p class="sub-small">I just sent <strong>Metabolic Reset Blueprint</strong>.</p>
-      <p class="big-call">Please check your <em>inbox</em>.</p>
+      <p class="sub-small">I just sent <strong>Metabolic Reset Blueprint</strong> to <strong id="user-email">your inbox</strong>.</p>
+      <p class="big-call">Please check your email <em>inbox</em>.</p>
 
       <!-- ENVELOPE as visual bridge -->
       <div class="env-transition">
@@ -130,14 +131,14 @@
         <div class="gm-bar"><span class="gm-dot"></span><span class="gm-dot" style="background:#fbc"></span><span class="gm-dot" style="background:#bfb"></span><span style="margin-left:0.5rem">Inbox · 14 messages</span></div>
         <div class="gm-tabs"><div class="gm-tab active">Primary</div><div class="gm-tab">Promotions</div><div class="gm-tab">Social</div></div>
         <div class="gm-row"><div class="gm-ava" style="background:#ddd;color:#666">JD</div><div class="gm-from">John D</div><div class="gm-snip">Re: Tuesday's meeting...</div><div class="gm-time">10:12 AM</div></div>
-        <div class="gm-row target"><div class="gm-ava">S</div><div class="gm-from">Saby Roy</div><div class="gm-snip"><b>Your Metabolic Reset Blueprint</b></div><div class="gm-time">just now</div></div>
+        <div class="gm-row target"><div class="gm-ava">S</div><div class="gm-from">Dr. Saby Roy</div><div class="gm-snip"><b>Welcome — Metabolic Reset Blueprint</b></div><div class="gm-time">just now</div></div>
         <div class="gm-row"><div class="gm-ava" style="background:#bbb;color:#666">AM</div><div class="gm-from">Amazon</div><div class="gm-snip">Your order has shipped...</div><div class="gm-time">9:47 AM</div></div>
       </div>
 
       <div class="pill-row">
-        <span class="pill">From: Saby Roy</span>
+        <span class="pill">From: Dr. Saby Roy</span>
         <span class="pill">saby@sabyroy.com</span>
-        <span class="pill">Subject: "Your guide"</span>
+        <span class="pill">Subject: "Welcome — Metabolic Reset Blueprint"</span>
       </div>
 
       <div class="hunt-instr">
@@ -148,7 +149,16 @@
     </div>
   </main>
   <footer class="foot">&copy; <span id="y"></span> Dr. Saby Roy · <a href="/privacy">Privacy</a></footer>
-  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+    // Personalise: show the subscriber's email if we stored it from the /free form
+    try {
+      var em = sessionStorage.getItem('sr_last_email');
+      if (em && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em)) {
+        document.getElementById('user-email').textContent = em;
+      }
+    } catch (e) { /* ignore */ }
+  </script>
   <script src="/assets/cookie-banner.js" defer></script>
 </body>
 </html>
